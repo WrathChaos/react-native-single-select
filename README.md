@@ -91,6 +91,11 @@ menuItemTextStyle: TextStyle;
 - [ ] Customizable Text Component
 - [ ] Write an article about the lib on Medium
 
+
+## Credits
+
+Heavily Inspired by [Manuel Rovira's Vuesax Components](https://dribbble.com/shots/11248542/attachments/2856460?mode=media)
+
 ## Author
 
 FreakyCoder, kurayogun@gmail.com
