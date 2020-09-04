@@ -8,7 +8,7 @@ export type Source = {
 };
 
 interface IProps {
-  style?: ImageStyle;
+  style?: ImageStyle | ImageStyle[];
   iconImageSource?: Source | number;
 }
 
@@ -44,9 +44,9 @@ class Icon extends React.Component<IProps, IState> {
     });
     return (
       <Animated.Image
-        {...other}
         source={iconImageSource || defaultIconImage}
         style={[style, { transform: [{ rotate }] }]}
+        {...other}
       />
     );
   }

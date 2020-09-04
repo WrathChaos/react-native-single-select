@@ -7,7 +7,9 @@ import {
   Text,
   StatusBar,
 } from "react-native";
-import RNSingleSelect, { ISingleSelectDataType } from "./lib/RNSingleSelect";
+import RNSingleSelect, {
+  ISingleSelectDataType,
+} from "@freakycoder/react-native-single-select";
 
 const staticData: Array<ISingleSelectDataType> = [
   { id: 0, value: "Euismod Justo" },

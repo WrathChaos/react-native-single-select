@@ -1,20 +1,24 @@
-import React, { Component } from "react";
+import * as React from "react";
 import {
   Animated,
   Text,
   View,
-  Image,
   Easing,
-  FlatList,
   TouchableOpacity,
   ScrollView,
   TouchableHighlight,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
 } from "react-native";
 /**
  * ? Local Imports
  */
 import Icon from "./components/Icon";
-import styles from "./RNSingleSelect.style";
+import styles, {
+  _placeholderTextStyle,
+  _menuItemContainer,
+} from "./RNSingleSelect.style";
 
 export interface ISingleSelectDataType {
   id: number;
@@ -22,7 +26,12 @@ export interface ISingleSelectDataType {
 }
 
 interface IProps {
-  data: Array<ISingleSelectDataType>;
+  placeholder?: string;
+  buttonContainerStyle: ViewStyle;
+  arrowImageStyle: ImageStyle;
+  menuItemTextStyle: TextStyle;
+  menuBarContainerStyle?: ViewStyle;
+  data?: Array<ISingleSelectDataType>;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
 }
 
@@ -33,7 +42,7 @@ interface IState {
   selectedItem?: ISingleSelectDataType | null;
 }
 
-export default class RNSingleSelect extends Component<IProps, IState> {
+export default class RNSingleSelect extends React.Component<IProps, IState> {
   iconRef?: Icon = undefined;
 
   constructor(props: IProps) {
@@ -81,7 +90,7 @@ export default class RNSingleSelect extends Component<IProps, IState> {
   /*                               Render Methods                               */
   /* -------------------------------------------------------------------------- */
 
-  renderButton = () => {
+  renderSingleSelectButton = () => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -90,39 +99,24 @@ export default class RNSingleSelect extends Component<IProps, IState> {
         {...this.props}
       >
         <Animated.View
-          style={{
-            height: 50,
-            width: 250,
-            borderRadius: this.state.borderRadius,
-            borderTopLeftRadius: 16,
-            borderTopRightRadius: 16,
-            justifyContent: "center",
-            backgroundColor: "#2b2c32",
-          }}
+          style={[
+            styles.buttonContainer,
+            {
+              borderRadius: this.state.borderRadius,
+            },
+            this.props.buttonContainerStyle,
+          ]}
         >
-          <View
-            style={{
-              marginLeft: 16,
-              marginRight: 16,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 16,
-                color: this.state.selectedItem ? "#fff" : "#fdfdfd",
-                fontWeight: "bold",
-              }}
-            >
+          <View style={styles.buttonContainerGlue}>
+            <Text style={_placeholderTextStyle(this.state.selectedItem)}>
               {this.state.selectedItem
                 ? this.state.selectedItem.value
-                : "Select"}
+                : this.props.placeholder || "Select"}
             </Text>
             <Icon
               ref={(ref: Icon) => (this.iconRef = ref)}
-              style={{ height: 20, width: 20 }}
+              style={[styles.arrowImageStyle, this.props.arrowImageStyle]}
+              {...this.props}
             />
           </View>
         </Animated.View>
@@ -131,55 +125,53 @@ export default class RNSingleSelect extends Component<IProps, IState> {
   };
 
   renderMenuItem = (item: ISingleSelectDataType, index: number) => {
-    const { id, value } = item;
+    const { value } = item;
     return (
       <TouchableHighlight
-        style={{
-          padding: 16,
-          borderBottomEndRadius: index === this.props.data.length - 1 ? 16 : 0,
-          borderBottomStartRadius:
-            index === this.props.data.length - 1 ? 16 : 0,
-        }}
+        style={_menuItemContainer(index, this.props.data)}
         onPress={() => {
           this.handleOnSelectItem(item);
           this.props.onSelect && this.props.onSelect(item);
         }}
       >
-        <Text style={{ color: "#52555b" }}>{value}</Text>
+        <Text style={[styles.menuItemTextStyle, this.props.menuItemTextStyle]}>
+          {value}
+        </Text>
       </TouchableHighlight>
     );
   };
 
-  render() {
+  renderMenuBar = () => {
     const rotate = this.state.menuBarYTranslate.interpolate({
       inputRange: [0, 25, 50, 75, 100],
-      outputRange: [0, 0.5, 0.75, 0.9, 1], 
+      outputRange: [0, 0.5, 0.75, 0.9, 1],
     });
     return (
+      <Animated.View
+        style={[
+          styles.menuBarContainer,
+          {
+            transform: [{ scaleY: rotate }],
+          },
+          this.props.menuBarContainerStyle,
+        ]}
+      >
+        <ScrollView>
+          {this.props.data &&
+            this.props.data.length > 0 &&
+            this.props.data.map((item: ISingleSelectDataType, index: number) =>
+              this.renderMenuItem(item, index),
+            )}
+        </ScrollView>
+      </Animated.View>
+    );
+  };
+
+  render() {
+    return (
       <View>
-        {this.renderButton()}
-        <Animated.View
-          style={[
-            {
-              height: 150,
-              backgroundColor: "#171920",
-              borderBottomEndRadius: 16,
-              borderBottomStartRadius: 16,
-            },
-            {
-              transform: [{ scaleY: rotate }],
-            },
-          ]}
-        >
-          <ScrollView>
-            {this.props.data &&
-              this.props.data.length > 0 &&
-              this.props.data.map(
-                (item: ISingleSelectDataType, index: number) =>
-                  this.renderMenuItem(item, index),
-              )}
-          </ScrollView>
-        </Animated.View>
+        {this.renderSingleSelectButton()}
+        {this.renderMenuBar()}
       </View>
     );
   }
