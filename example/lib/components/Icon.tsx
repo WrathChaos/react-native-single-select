@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Animated, Easing, ImageStyle } from "react-native";
 
-import icon from "./down-arrow.png";
+import defaultIconImage from "./down-arrow.png";
 
 interface IProps {
   style?: ImageStyle;
@@ -11,8 +11,6 @@ interface IState {
   toggled: boolean;
   rotation: Animated.Value;
 }
-
-const leftSide = ["0deg", "180deg"];
 
 class Icon extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -34,7 +32,7 @@ class Icon extends React.Component<IProps, IState> {
   };
 
   render() {
-    const { style, ...other } = this.props;
+    const { style, iconImageSource, ...other } = this.props;
     const rotate = this.state.rotation.interpolate({
       inputRange: [0, 1],
       outputRange: ["0deg", "180deg"],
@@ -42,7 +40,7 @@ class Icon extends React.Component<IProps, IState> {
     return (
       <Animated.Image
         {...other}
-        source={icon}
+        source={defaultIconImage}
         style={[style, { transform: [{ rotate }] }]}
       />
     );
