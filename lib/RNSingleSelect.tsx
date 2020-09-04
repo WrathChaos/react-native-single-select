@@ -67,7 +67,7 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
   animateSelectionBar = () => {
     Animated.timing(this.state.menuBarYTranslate, {
       toValue: this.state.menuToggled ? 0 : 100,
-      duration: 550,
+      duration: 250,
       easing: Easing.ease,
       useNativeDriver: true,
     }).start();
