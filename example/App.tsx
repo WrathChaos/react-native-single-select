@@ -15,7 +15,7 @@ const staticData: Array<ISingleSelectDataType> = [
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <SafeAreaView
         style={{
           flex: 1,

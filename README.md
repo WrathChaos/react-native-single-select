@@ -13,7 +13,7 @@
 
 <p align="center">
   <img alt="React Native Single Select"
-        src="assets/Screenshots/typescript.jpg" />
+        src="assets/Screenshots/React-Native-Single-Select.gif" />
 </p>
 
 # Installation
