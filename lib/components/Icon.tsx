@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Animated, Easing, ImageStyle } from "react-native";
 // ? Assets
-import defaultIconImage from "./down-arrow.png";
+import defaultIconImage from "./local-assets/down-arrow.png";
 
 export type Source = {
   uri?: string;
