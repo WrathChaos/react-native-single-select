@@ -27,9 +27,9 @@ export interface ISingleSelectDataType {
 
 interface IProps {
   placeholder?: string;
-  buttonContainerStyle: ViewStyle;
-  arrowImageStyle: ImageStyle;
-  menuItemTextStyle: TextStyle;
+  buttonContainerStyle?: ViewStyle;
+  arrowImageStyle?: ImageStyle;
+  menuItemTextStyle?: TextStyle;
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
   onSelect: (selectedItem: ISingleSelectDataType) => void;

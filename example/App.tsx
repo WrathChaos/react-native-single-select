@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from "react-native";
+import { StatusBar, SafeAreaView } from "react-native";
 import RNSingleSelect, {
   ISingleSelectDataType,
 } from "@freakycoder/react-native-single-select";
