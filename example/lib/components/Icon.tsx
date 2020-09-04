@@ -22,11 +22,8 @@ class Icon extends React.Component<IProps, IState> {
       rotation: new Animated.Value(0),
     };
   }
-  spin = () => {
-    this.startAnimation();
-  };
 
-  startAnimation = () => {
+  onPressAnimation = () => {
     const { rotation, toggled } = this.state;
     Animated.timing(rotation, {
       toValue: toggled ? 0 : 1,

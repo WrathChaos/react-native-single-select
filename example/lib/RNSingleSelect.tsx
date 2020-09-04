@@ -11,20 +11,20 @@ interface IProps {}
 interface IState {}
 
 export default class RNSingleSelect extends Component<IProps, IState> {
+  iconRef?: Icon = undefined;
   renderButton = () => {
     return (
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => {
-          this.iconRef.spin();
+          this.iconRef?.onPressAnimation();
         }}
       >
         <View>
           <Text></Text>
           <Icon
-            ref={(ref) => (this.iconRef = ref)}
+            ref={(ref: Icon) => (this.iconRef = ref)}
             style={{ height: 50, width: 50 }}
-            reverseAnimation
           />
         </View>
       </TouchableOpacity>
