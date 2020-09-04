@@ -4,7 +4,7 @@ import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
  * ? Local Imports
  */
 import Icon from "./components/Icon";
-import styles from "./RNSingleSelect.style.ts";
+import styles from "./RNSingleSelect.style";
 
 interface IProps {}
 
@@ -15,16 +15,33 @@ export default class RNSingleSelect extends Component<IProps, IState> {
   renderButton = () => {
     return (
       <TouchableOpacity
-        activeOpacity={1}
         onPress={() => {
           this.iconRef?.onPressAnimation();
         }}
+        style={{
+          height: 50,
+          width: 250,
+          borderRadius: 16,
+          justifyContent: "center",
+          backgroundColor: "#191a1e",
+        }}
+        {...this.props}
       >
-        <View>
-          <Text></Text>
+        <View
+          style={{
+            marginLeft: 16,
+            marginRight: 16,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 16, color: "#fdfdfd", fontWeight: "bold" }}>
+            Select
+          </Text>
           <Icon
             ref={(ref: Icon) => (this.iconRef = ref)}
-            style={{ height: 50, width: 50 }}
+            style={{ height: 20, width: 20 }}
           />
         </View>
       </TouchableOpacity>
