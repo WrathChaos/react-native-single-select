@@ -1,10 +1,15 @@
 import * as React from "react";
 import { Animated, Easing, ImageStyle } from "react-native";
-
+// ? Assets
 import defaultIconImage from "./down-arrow.png";
+
+export type Source = {
+  uri?: string;
+};
 
 interface IProps {
   style?: ImageStyle;
+  iconImageSource?: Source | number;
 }
 
 interface IState {
@@ -40,7 +45,7 @@ class Icon extends React.Component<IProps, IState> {
     return (
       <Animated.Image
         {...other}
-        source={defaultIconImage}
+        source={iconImageSource || defaultIconImage}
         style={[style, { transform: [{ rotate }] }]}
       />
     );
