@@ -11,10 +11,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
 
-<p align="center">
-  <img alt="React Native Single Select"
-        src="assets/Screenshots/React-Native-Single-Select.gif" />
-</p>
+  <table>
+    <tr>
+      <td>
+        <b>Dark Theme</b>
+      </td>
+      <td>
+        <b>Light Theme</b>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img alt="React Native Internet Connection Alert"
+          src="assets/Screenshots/React-Native-Single-Select-Dark-Theme.gif"  />
+      </td>
+      <td align="center">
+      <img alt="React Native Internet Connection Alert"
+          src="assets/Screenshots/React-Native-Single-Select-Light-Theme.gif" />
+      </td>
+    </tr>
+  </table>
 
 # Installation
 
@@ -39,6 +55,7 @@ import RNSingleSelect, {
 ```jsx
 <RNSingleSelect
   data={staticData}
+  darkMode
   onSelect={(selectedItem: ISingleSelectDataType) =>
     console.log("SelectedItem: ", selectedItem)
   }
@@ -59,24 +76,40 @@ const staticData: Array<ISingleSelectDataType> = [
 ];
 ```
 
+**OR** with `ImageSource`
+
+```js
+const staticData: Array<ISingleSelectDataType> = [
+  { id: 0, value: "Euismod Justo", imageSource: require("./assets/..") },
+  { id: 1, value: "Risus Venenatis", imageSource: { uri: "...url" } },
+  { id: 1, value: "Risus Venenatis", imageSource: null },
+];
+```
+
 Also, here is the interface of ISingleSelectDataType:
 
 ```js
 export interface ISingleSelectDataType {
   id: number;
   value: string;
+  imageSource?: any;
 }
 ```
 
 # Configuration - Props
 
-menuItemTextStyle: TextStyle;
-
 | Property              |             Type             |  Default  | Description                                                        |
 | --------------------- | :--------------------------: | :-------: | ------------------------------------------------------------------ |
 | onSelect              |           function           | undefined | set the selection function when a menu item is selected            |
 | data                  | Array<ISingleSelectDataType> | undefined | set the menu item data array for generating menu bar items         |
-| placeholder           |            string            | "Select"  | Change the placeholder of the single select component              |
+| width                 |            number            |    250    | change the width of the component                                  |
+| height                |            number            |    50     | change the height of the main single select button                 |
+| darkMode              |           boolean            |   false   | change the theme of the component to `dark theme`                  |
+| placeholder           |            string            | "Select"  | change the placeholder of the single select component              |
+| imageHeight           |            number            |    25     | change the image source's menu item's image height                 |
+| imageWidth            |            number            |    25     | change the image source's menu item's image width                  |
+| ImageComponent        |          component           |   Image   | set your own custom Image component instead of default `Image` one |
+| TextComponent         |          component           |   Text    | set your own custom Text component instead of default `Text` one   |
 | buttonContainerStyle  |          ViewStyle           |  default  | change/override the top of the single select button (the main one) |
 | menuBarContainerStyle |          ViewStyle           |  default  | change/override the top of the single select bottom menu bar       |
 | arrowImageStyle       |          ImageStyle          |  default  | change/override the top of the arrow image's style                 |
@@ -85,11 +118,11 @@ menuItemTextStyle: TextStyle;
 ## Future Plans
 
 - [x] ~~LICENSE~~
-- [ ] Search Feature
-- [ ] Image Feature
-- [ ] Customizable Image Component
-- [ ] Customizable Text Component
-- [ ] Dark Theme / Light Theme Options
+- [x] ~~Search Feature~~
+- [x] ~~Image Feature~~
+- [x] ~~Customizable Image Component~~
+- [x] ~~Customizable Text Component~~
+- [x] ~~Dark Theme / Light Theme Options~~
 - [ ] Customizable Animations
 - [ ] Write an article about the lib on Medium
 

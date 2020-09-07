@@ -1,6 +1,6 @@
 {
   "name": "@freakycoder/react-native-single-select",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Customizable & Easy to Use Single Select Library for React Native",
   "main": "./build/dist/RNSingleSelect.js",
   "repository": "git@github.com:WrathChaos/react-native-single-select.git",
@@ -9,6 +9,10 @@
   "homepage": "https://www.freakycoder.com",
   "bugs": "https://github.com/WrathChaos/react-native-single-select/issues",
   "keywords": [
+    "dark",
+    "dark-mode",
+    "theme",
+    "theming",
     "single-select",
     "picker",
     "single-select-picker",
