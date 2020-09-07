@@ -58,58 +58,63 @@ interface IState {
   selectedItem?: ISingleSelectDataType | null;
 }
 
-export default class RNSingleSelect extends React.Component<IProps, IState> {
-  iconRef?: Icon = undefined;
+let iconRef: any = undefined;
+const RNSingleSelect = (props: IProps) => {
+  const [query, setQuery] = React.useState("");
+  const [
+    selectedItem,
+    setSelectedItem,
+  ] = React.useState<ISingleSelectDataType | null>(null);
+  const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
+  const [dataBackup, setDataBackup] = React.useState<
+    Array<ISingleSelectDataType> | undefined
+  >(props.data);
+  const [dataSource, setDataSource] = React.useState<
+    Array<ISingleSelectDataType> | undefined
+  >(props.data);
+  const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
+    Animated.Value
+  >(new Animated.Value(16));
+  const [
+    menuBarYTranslateAnimation,
+    setMenuBarYTranslateAnimation,
+  ] = React.useState<Animated.Value>(new Animated.Value(0));
 
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      query: "",
-      selectedItem: null,
-      menuToggled: false,
-      dataBackup: props.data,
-      dataSource: props.data,
-      borderRadius: new Animated.Value(16),
-      menuBarYTranslate: new Animated.Value(0),
-    };
-  }
+  const { buttonContainerStyle } = props;
 
-  animateBorderRadius = () => {
-    Animated.timing(this.state.borderRadius, {
-      toValue: this.state.menuToggled ? 16 : 0,
+  const animateBorderRadius = () => {
+    Animated.timing(borderRadiusAnimation, {
+      toValue: menuToggled ? 16 : 0,
       duration: 1250,
       easing: Easing.bounce,
       useNativeDriver: true,
     }).start();
   };
 
-  animateSelectionBar = () => {
-    Animated.timing(this.state.menuBarYTranslate, {
-      toValue: this.state.menuToggled ? 0 : 100,
+  const animateSelectionBar = () => {
+    Animated.timing(menuBarYTranslateAnimation, {
+      toValue: menuToggled ? 0 : 100,
       duration: 250,
       easing: Easing.ease,
       useNativeDriver: true,
     }).start();
   };
 
-  handleOnToggleMenuBar = (isMenuToggled?: boolean) => {
-    this.iconRef?.onPressAnimation();
-    this.animateBorderRadius();
-    this.animateSelectionBar();
-    this.setState({
-      menuToggled: isMenuToggled ? isMenuToggled : !this.state.menuToggled,
-    });
+  const handleOnToggleMenuBar = (isMenuToggled?: boolean) => {
+    iconRef?.onPressAnimation();
+    animateBorderRadius();
+    animateSelectionBar();
+    setMenuToggled(isMenuToggled ? isMenuToggled : !menuToggled);
   };
 
-  handleOnSelectItem = (item: ISingleSelectDataType) => {
-    this.handleOnFilter("");
-    this.setState({ selectedItem: item }, () => {
-      this.handleOnToggleMenuBar();
-      this.props.onSelect && this.props.onSelect(item);
-    });
+  const handleOnSelectItem = (item: ISingleSelectDataType) => {
+    handleOnFilter("");
+    setSelectedItem(item);
+    handleOnToggleMenuBar();
+    props.onSelect && props.onSelect(item);
   };
 
-  triggerFilterAnimation = () => {
+  const triggerFilterAnimation = () => {
     LayoutAnimation.configureNext({
       duration: 1000,
       create: {
@@ -125,59 +130,57 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
     });
   };
 
-  handleOnFilter = (text: string) => {
-    let newData = this.state.dataBackup;
-    newData = this.state.dataBackup?.filter((item) => {
+  const handleOnFilter = (text: string) => {
+    let newData = dataBackup;
+    newData = dataBackup?.filter((item) => {
       const itemData = item.value.toLowerCase();
       const textData = text.toLowerCase();
       return itemData.indexOf(textData) > -1;
     });
-    this.triggerFilterAnimation();
-    this.setState({
-      query: text,
-      selectedItem: { value: text },
-      dataSource: newData,
-    });
+    triggerFilterAnimation();
+    setQuery(text);
+    setSelectedItem({ value: text });
+    setDataSource(newData);
   };
 
   /* -------------------------------------------------------------------------- */
   /*                               Render Methods                               */
   /* -------------------------------------------------------------------------- */
 
-  renderSingleSelectButton = () => {
+  const renderSingleSelectButton = () => {
     return (
       <TouchableOpacity
         onPress={() => {
-          this.handleOnToggleMenuBar();
+          handleOnToggleMenuBar();
         }}
-        {...this.props}
+        {...props}
       >
         <Animated.View
           style={[
-            _menuButtonContainer(this.props.height, this.props.width),
+            _menuButtonContainer(props.height, props.width),
             {
-              borderRadius: this.state.borderRadius,
+              borderRadius: borderRadiusAnimation,
             },
-            this.props.buttonContainerStyle,
+            props.buttonContainerStyle,
           ]}
         >
           <View style={styles.buttonContainerGlue}>
             <TextInput
-              placeholderTextColor={this.state.selectedItem ? "#fff" : "#ccc"}
-              style={_placeholderTextStyle(this.state.selectedItem)}
-              placeholder={this.props.placeholder || "Select"}
-              onFocus={() => this.handleOnToggleMenuBar(false)}
+              placeholderTextColor={selectedItem ? "#fff" : "#ccc"}
+              style={_placeholderTextStyle(selectedItem)}
+              placeholder={props.placeholder || "Select"}
+              onFocus={() => handleOnToggleMenuBar(false)}
               onChangeText={(text: string) => {
-                if (text.length === 0) this.handleOnFilter("");
-                else this.handleOnFilter(text);
+                if (text.length === 0) handleOnFilter("");
+                else handleOnFilter(text);
               }}
             >
-              <Text>{this.state.selectedItem?.value}</Text>
+              <Text>{selectedItem?.value}</Text>
             </TextInput>
             <Icon
-              ref={(ref: Icon) => (this.iconRef = ref)}
-              style={[styles.arrowImageStyle, this.props.arrowImageStyle]}
-              {...this.props}
+              ref={(ref: Icon) => (iconRef = ref)}
+              style={[styles.arrowImageStyle, props.arrowImageStyle]}
+              {...props}
             />
           </View>
         </Animated.View>
@@ -185,7 +188,7 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
     );
   };
 
-  renderMenuItem = (item: ISingleSelectDataType, index: number) => {
+  const renderMenuItem = (item: ISingleSelectDataType, index: number) => {
     const { id, value, imageSource } = item;
     const {
       data,
@@ -193,13 +196,13 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
       imageHeight,
       menuItemTextStyle,
       ImageComponent = Image,
-    } = this.props;
+    } = props;
     return (
       <TouchableHighlight
         key={id}
         style={_menuItemContainer(index, data)}
         onPress={() => {
-          this.handleOnSelectItem(item);
+          handleOnSelectItem(item);
         }}
       >
         <View style={styles.menuBarItemContainerGlue}>
@@ -207,7 +210,7 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
             resizeMode="contain"
             source={imageSource}
             style={_imageStyle(imageHeight, imageWidth)}
-            {...this.props}
+            {...props}
           />
           <Text style={[styles.menuItemTextStyle, menuItemTextStyle]}>
             {value}
@@ -217,39 +220,38 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
     );
   };
 
-  renderMenuBar = () => {
-    const rotate = this.state.menuBarYTranslate.interpolate({
+  const renderMenuBar = () => {
+    const rotate = menuBarYTranslateAnimation.interpolate({
       inputRange: [0, 25, 50, 75, 100],
       outputRange: [0, 0.5, 0.75, 0.9, 1],
     });
     return (
       <Animated.View
         style={[
-          _menuBarContainer(this.props.menuBarContainerHeight || 150),
+          _menuBarContainer(props.menuBarContainerHeight || 150),
           {
             transform: [{ scaleY: rotate }],
           },
-          this.props.menuBarContainerStyle,
+          props.menuBarContainerStyle,
         ]}
       >
         <ScrollView>
-          {this.state.dataSource &&
-            this.state.dataSource.length > 0 &&
-            this.state.dataSource.map(
-              (item: ISingleSelectDataType, index: number) =>
-                this.renderMenuItem(item, index),
+          {dataSource &&
+            dataSource.length > 0 &&
+            dataSource.map((item: ISingleSelectDataType, index: number) =>
+              renderMenuItem(item, index),
             )}
         </ScrollView>
       </Animated.View>
     );
   };
 
-  render() {
-    return (
-      <View>
-        {this.renderSingleSelectButton()}
-        {this.renderMenuBar()}
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      {renderSingleSelectButton()}
+      {renderMenuBar()}
+    </View>
+  );
+};
+
+export default RNSingleSelect;
