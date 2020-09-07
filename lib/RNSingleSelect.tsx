@@ -36,14 +36,14 @@ export interface ISingleSelectDataType {
 }
 
 interface IProps {
-  width: number;
-  height: number;
-  darkMode: boolean;
+  width?: number;
+  height?: number;
+  darkMode?: boolean;
   imageWidth?: number;
   imageHeight?: number;
   placeholder?: string;
-  ImageComponent: any;
-  TextComponent: any;
+  ImageComponent?: any;
+  TextComponent?: any;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   menuBarContainerHeight?: number;
