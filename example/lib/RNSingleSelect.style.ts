@@ -1,39 +1,46 @@
 import { ViewStyle, ImageStyle, TextStyle, StyleSheet } from "react-native";
 import { ISingleSelectDataType } from "./RNSingleSelect";
+import { ThemeColors } from "./theme";
 
 interface Style {
   arrowImageStyle: ImageStyle;
-  menuItemTextStyle: TextStyle;
   buttonContainerGlue: ViewStyle;
   menuBarItemContainerGlue: ViewStyle;
 }
 
 export const _placeholderTextStyle = (
+  theme: string,
   selectedItem?: ISingleSelectDataType | null,
 ): TextStyle => ({
   width: "90%",
   fontSize: 16,
   fontWeight: "bold",
-  color: selectedItem ? "#fff" : "#fdfdfd",
+  color: selectedItem
+    ? ThemeColors[theme].textColor
+    : ThemeColors[theme].placeholderColor,
 });
 
 export const _menuItemContainer = (
   index: number,
   data?: Array<ISingleSelectDataType>,
-) => ({
+): ViewStyle => ({
   padding: 16,
   borderBottomEndRadius: index === (data && data.length - 1) ? 16 : 0,
   borderBottomStartRadius: index === (data && data.length - 1) ? 16 : 0,
 });
 
-export const _menuBarContainer = (menuBarContainerHeight: number) => ({
-  backgroundColor: "#171920",
+export const _menuBarContainer = (
+  theme: string,
+  menuBarContainerHeight: number,
+): ViewStyle => ({
   borderBottomEndRadius: 16,
   borderBottomStartRadius: 16,
   height: menuBarContainerHeight,
+  backgroundColor: ThemeColors[theme].menuBarBackgroundColor,
 });
 
 export const _menuButtonContainer = (
+  theme: string,
   height: number = 50,
   width: number = 250,
 ): ViewStyle => ({
@@ -42,13 +49,21 @@ export const _menuButtonContainer = (
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
   justifyContent: "center",
-  backgroundColor: "#2b2c32",
+  backgroundColor: ThemeColors[theme].menuButtonBackgroundColor,
 });
 
-export const _imageStyle = (height: number = 25, width: number = 25) => ({
+export const _imageStyle = (
+  height: number = 25,
+  width: number = 25,
+): ImageStyle => ({
   width,
   height,
   marginRight: 16,
+});
+
+export const _menuItemTextStyle = (theme: string): TextStyle => ({
+  color: ThemeColors[theme].menuItemTextColor,
+  fontWeight: "700",
 });
 
 export default StyleSheet.create<Style>({
@@ -62,9 +77,6 @@ export default StyleSheet.create<Style>({
   arrowImageStyle: {
     width: 20,
     height: 20,
-  },
-  menuItemTextStyle: {
-    color: "#52555b",
   },
   menuBarItemContainerGlue: {
     flexDirection: "row",

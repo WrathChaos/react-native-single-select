@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, SafeAreaView } from "react-native";
+import { View, StatusBar, SafeAreaView } from "react-native";
 import RNSingleSelect, { ISingleSelectDataType } from "./lib/RNSingleSelect";
 
 const staticData: Array<ISingleSelectDataType> = [
@@ -33,18 +33,31 @@ const App = () => {
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: "#454851",
+          // backgroundColor: "#454851",
+          backgroundColor: "#eceef3",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <RNSingleSelect
-          data={staticData}
-          menuBarContainerHeight={300}
-          onSelect={(selectedItem: ISingleSelectDataType) =>
-            console.log("SelectedItem: ", selectedItem)
-          }
-        />
+        <View
+          style={{
+            shadowRadius: 12,
+            shadowOpacity: 0.1,
+            shadowColor: "#757575",
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+          }}
+        >
+          <RNSingleSelect
+            data={staticData}
+            menuBarContainerHeight={300}
+            onSelect={(selectedItem: ISingleSelectDataType) =>
+              console.log("SelectedItem: ", selectedItem)
+            }
+          />
+        </View>
       </SafeAreaView>
     </>
   );

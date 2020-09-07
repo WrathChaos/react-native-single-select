@@ -22,9 +22,11 @@ import styles, {
   _imageStyle,
   _menuBarContainer,
   _menuItemContainer,
+  _menuItemTextStyle,
   _menuButtonContainer,
   _placeholderTextStyle,
 } from "./RNSingleSelect.style";
+import { ThemeColors, DARK, LIGHT } from "./theme";
 
 export interface ISingleSelectDataType {
   id: number;
@@ -35,6 +37,7 @@ export interface ISingleSelectDataType {
 interface IProps {
   width: number;
   height: number;
+  darkMode: boolean;
   imageWidth?: number;
   imageHeight?: number;
   placeholder?: string;
@@ -79,8 +82,14 @@ const RNSingleSelect = (props: IProps) => {
     menuBarYTranslateAnimation,
     setMenuBarYTranslateAnimation,
   ] = React.useState<Animated.Value>(new Animated.Value(0));
+  const [theme, setTheme] = React.useState(DARK);
 
   const { buttonContainerStyle } = props;
+
+  React.useEffect(() => {
+    if (props.darkMode) setTheme(DARK);
+    else setTheme(LIGHT);
+  }, []);
 
   const animateBorderRadius = () => {
     Animated.timing(borderRadiusAnimation, {
@@ -157,7 +166,7 @@ const RNSingleSelect = (props: IProps) => {
       >
         <Animated.View
           style={[
-            _menuButtonContainer(props.height, props.width),
+            _menuButtonContainer(theme, props.height, props.width),
             {
               borderRadius: borderRadiusAnimation,
             },
@@ -166,8 +175,12 @@ const RNSingleSelect = (props: IProps) => {
         >
           <View style={styles.buttonContainerGlue}>
             <TextInput
-              placeholderTextColor={selectedItem ? "#fff" : "#ccc"}
-              style={_placeholderTextStyle(selectedItem)}
+              placeholderTextColor={
+                selectedItem
+                  ? ThemeColors[theme].textColor
+                  : ThemeColors[theme].placeholderColor
+              }
+              style={_placeholderTextStyle(theme, selectedItem)}
               placeholder={props.placeholder || "Select"}
               onFocus={() => handleOnToggleMenuBar(false)}
               onChangeText={(text: string) => {
@@ -179,6 +192,7 @@ const RNSingleSelect = (props: IProps) => {
             </TextInput>
             <Icon
               ref={(ref: Icon) => (iconRef = ref)}
+              theme={theme}
               style={[styles.arrowImageStyle, props.arrowImageStyle]}
               {...props}
             />
@@ -212,7 +226,7 @@ const RNSingleSelect = (props: IProps) => {
             style={_imageStyle(imageHeight, imageWidth)}
             {...props}
           />
-          <Text style={[styles.menuItemTextStyle, menuItemTextStyle]}>
+          <Text style={[_menuItemTextStyle(theme), menuItemTextStyle]}>
             {value}
           </Text>
         </View>
@@ -228,7 +242,7 @@ const RNSingleSelect = (props: IProps) => {
     return (
       <Animated.View
         style={[
-          _menuBarContainer(props.menuBarContainerHeight || 150),
+          _menuBarContainer(theme, props.menuBarContainerHeight || 150),
           {
             transform: [{ scaleY: rotate }],
           },

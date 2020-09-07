@@ -1,13 +1,19 @@
 import * as React from "react";
 import { Animated, Easing, ImageStyle } from "react-native";
+/**
+ * ? Local Imports
+ */
+import { DARK, LIGHT } from "../theme";
 // ? Assets
-import defaultIconImage from "./down-arrow.png";
+import defaultLightIconImage from "./down-arrow-light.png";
+import defaultDarkIconImage from "./down-arrow-dark.png";
 
 export type Source = {
   uri?: string;
 };
 
 interface IProps {
+  theme: string;
   style?: ImageStyle | ImageStyle[];
   iconImageSource?: Source | number;
 }
@@ -44,7 +50,12 @@ class Icon extends React.Component<IProps, IState> {
     });
     return (
       <Animated.Image
-        source={iconImageSource || defaultIconImage}
+        source={
+          iconImageSource ||
+          (this.props.theme === DARK
+            ? defaultLightIconImage
+            : defaultDarkIconImage)
+        }
         style={[style, { transform: [{ rotate }] }]}
         {...other}
       />
