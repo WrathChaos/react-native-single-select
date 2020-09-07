@@ -5,6 +5,7 @@ interface Style {
   arrowImageStyle: ImageStyle;
   menuItemTextStyle: TextStyle;
   buttonContainerGlue: ViewStyle;
+  menuBarItemContainerGlue: ViewStyle;
 }
 
 export const _placeholderTextStyle = (
@@ -44,6 +45,12 @@ export const _menuButtonContainer = (
   backgroundColor: "#2b2c32",
 });
 
+export const _imageStyle = (height: number = 25, width: number = 25) => ({
+  width,
+  height,
+  marginRight: 16,
+});
+
 export default StyleSheet.create<Style>({
   buttonContainerGlue: {
     marginLeft: 16,
@@ -58,5 +65,9 @@ export default StyleSheet.create<Style>({
   },
   menuItemTextStyle: {
     color: "#52555b",
+  },
+  menuBarItemContainerGlue: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

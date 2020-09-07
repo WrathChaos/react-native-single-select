@@ -10,6 +10,7 @@ import {
   ViewStyle,
   ImageStyle,
   TextStyle,
+  TextInput,
 } from "react-native";
 /**
  * ? Local Imports
@@ -36,6 +37,9 @@ interface IProps {
 }
 
 interface IState {
+  query: string;
+  dataBackup?: Array<ISingleSelectDataType>;
+  dataSource?: Array<ISingleSelectDataType>;
   menuToggled: boolean;
   borderRadius: Animated.Value;
   menuBarYTranslate: Animated.Value;
@@ -48,8 +52,11 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
+      query: "",
       selectedItem: null,
       menuToggled: false,
+      dataBackup: props.data,
+      dataSource: props.data,
       borderRadius: new Animated.Value(16),
       menuBarYTranslate: new Animated.Value(0),
     };
@@ -86,6 +93,26 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
     });
   };
 
+  handleOnFilter = (text: string) => {
+    console.log("Text: ", text);
+    if (text.length === 0) {
+      this.handleOnFilter("");
+    } else {
+      let newData = this.state.dataBackup;
+      newData = this.state.dataBackup?.filter((item) => {
+        const itemData = item.value.toLowerCase();
+        const textData = text.toLowerCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      console.log("DataSource: ", newData);
+      // LayoutAnimation.configureNext(CustomLayoutSpring(null, null, "scaleXY"));
+      this.setState({
+        query: text,
+        dataSource: newData,
+      });
+    }
+  };
+
   /* -------------------------------------------------------------------------- */
   /*                               Render Methods                               */
   /* -------------------------------------------------------------------------- */
@@ -108,11 +135,15 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
           ]}
         >
           <View style={styles.buttonContainerGlue}>
-            <Text style={_placeholderTextStyle(this.state.selectedItem)}>
-              {this.state.selectedItem
-                ? this.state.selectedItem.value
-                : this.props.placeholder || "Select"}
-            </Text>
+            <TextInput
+              style={_placeholderTextStyle(this.state.selectedItem)}
+              placeholder={
+                this.state.selectedItem
+                  ? this.state.selectedItem.value
+                  : this.props.placeholder || "Select"
+              }
+              onChangeText={(text: string) => this.handleOnFilter(text)}
+            />
             <Icon
               ref={(ref: Icon) => (this.iconRef = ref)}
               style={[styles.arrowImageStyle, this.props.arrowImageStyle]}
@@ -157,10 +188,11 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
         ]}
       >
         <ScrollView>
-          {this.props.data &&
-            this.props.data.length > 0 &&
-            this.props.data.map((item: ISingleSelectDataType, index: number) =>
-              this.renderMenuItem(item, index),
+          {this.state.dataSource &&
+            this.state.dataSource.length > 0 &&
+            this.state.dataSource.map(
+              (item: ISingleSelectDataType, index: number) =>
+                this.renderMenuItem(item, index),
             )}
         </ScrollView>
       </Animated.View>

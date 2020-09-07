@@ -1,24 +1,25 @@
 import * as React from "react";
 import {
-  Animated,
   Text,
   View,
+  Image,
   Easing,
-  TouchableOpacity,
-  ScrollView,
-  TouchableHighlight,
+  Animated,
   ViewStyle,
-  ImageStyle,
   TextStyle,
   TextInput,
+  ImageStyle,
+  ScrollView,
   LayoutAnimation,
-  Alert,
+  TouchableOpacity,
+  TouchableHighlight,
 } from "react-native";
 /**
  * ? Local Imports
  */
 import Icon from "./components/Icon";
 import styles, {
+  _imageStyle,
   _menuBarContainer,
   _menuItemContainer,
   _menuButtonContainer,
@@ -28,12 +29,16 @@ import styles, {
 export interface ISingleSelectDataType {
   id: number;
   value: string;
+  imageSource?: any;
 }
 
 interface IProps {
   width: number;
   height: number;
+  imageWidth?: number;
+  imageHeight?: number;
   placeholder?: string;
+  ImageComponent: any;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   menuBarContainerHeight?: number;
@@ -181,17 +186,33 @@ export default class RNSingleSelect extends React.Component<IProps, IState> {
   };
 
   renderMenuItem = (item: ISingleSelectDataType, index: number) => {
-    const { value } = item;
+    const { id, value, imageSource } = item;
+    const {
+      data,
+      imageWidth,
+      imageHeight,
+      menuItemTextStyle,
+      ImageComponent = Image,
+    } = this.props;
     return (
       <TouchableHighlight
-        style={_menuItemContainer(index, this.props.data)}
+        key={id}
+        style={_menuItemContainer(index, data)}
         onPress={() => {
           this.handleOnSelectItem(item);
         }}
       >
-        <Text style={[styles.menuItemTextStyle, this.props.menuItemTextStyle]}>
-          {value}
-        </Text>
+        <View style={styles.menuBarItemContainerGlue}>
+          <ImageComponent
+            resizeMode="contain"
+            source={imageSource}
+            style={_imageStyle(imageHeight, imageWidth)}
+            {...this.props}
+          />
+          <Text style={[styles.menuItemTextStyle, menuItemTextStyle]}>
+            {value}
+          </Text>
+        </View>
       </TouchableHighlight>
     );
   };
