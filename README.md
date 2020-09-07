@@ -85,10 +85,12 @@ menuItemTextStyle: TextStyle;
 ## Future Plans
 
 - [x] ~~LICENSE~~
-- [ ] Customizable Animations
-- [ ] Dark Theme / Light Theme Options
+- [ ] Search Feature
+- [ ] Image Feature
 - [ ] Customizable Image Component
 - [ ] Customizable Text Component
+- [ ] Dark Theme / Light Theme Options
+- [ ] Customizable Animations
 - [ ] Write an article about the lib on Medium
 
 ## Credits
