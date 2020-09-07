@@ -32,6 +32,7 @@ export interface ISingleSelectDataType {
   id: number;
   value: string;
   imageSource?: any;
+  data?: any;
 }
 
 interface IProps {
