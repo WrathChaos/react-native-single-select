@@ -1,8 +1,6 @@
 import React from "react";
 import { StatusBar, SafeAreaView } from "react-native";
-import RNSingleSelect, {
-  ISingleSelectDataType,
-} from "@freakycoder/react-native-single-select";
+import RNSingleSelect, { ISingleSelectDataType } from "./lib/RNSingleSelect";
 
 const staticData: Array<ISingleSelectDataType> = [
   { id: 0, value: "Euismod Justo" },
@@ -26,6 +24,7 @@ const App = () => {
       >
         <RNSingleSelect
           data={staticData}
+          menuBarContainerHeight={300}
           onSelect={(selectedItem: ISingleSelectDataType) =>
             console.log("SelectedItem: ", selectedItem)
           }
