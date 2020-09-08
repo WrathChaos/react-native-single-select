@@ -243,6 +243,7 @@ const RNSingleSelect = (props: IProps) => {
           _menuBarContainer(theme, props.menuBarContainerHeight || 150),
           {
             transform: [{ scaleY: rotate }],
+            display: menuToggled ? "flex" : "none",
           },
           props.menuBarContainerStyle,
         ]}
