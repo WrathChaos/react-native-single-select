@@ -44,6 +44,7 @@ interface IProps {
   placeholder?: string;
   ImageComponent?: any;
   TextComponent?: any;
+  disableAbsolute: boolean;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   menuBarContainerHeight?: number;
@@ -51,16 +52,6 @@ interface IProps {
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-}
-
-interface IState {
-  query: string;
-  dataBackup?: Array<ISingleSelectDataType>;
-  dataSource?: Array<ISingleSelectDataType>;
-  menuToggled: boolean;
-  borderRadius: Animated.Value;
-  menuBarYTranslate: Animated.Value;
-  selectedItem?: ISingleSelectDataType | null;
 }
 
 let iconRef: any = undefined;
@@ -86,7 +77,11 @@ const RNSingleSelect = (props: IProps) => {
   ] = React.useState<Animated.Value>(new Animated.Value(0));
   const [theme, setTheme] = React.useState(DARK);
 
-  const { ImageComponent = Image, TextComponent = Text } = props;
+  const {
+    disableAbsolute = false,
+    ImageComponent = Image,
+    TextComponent = Text,
+  } = props;
 
   React.useEffect(() => {
     if (props.darkMode) setTheme(DARK);
@@ -193,10 +188,9 @@ const RNSingleSelect = (props: IProps) => {
               <TextComponent>{selectedItem?.value}</TextComponent>
             </TextInput>
             <Icon
-              ref={(ref: Icon) => (iconRef = ref)}
               theme={theme}
+              ref={(ref: Icon) => (iconRef = ref)}
               style={[styles.arrowImageStyle, props.arrowImageStyle]}
-              {...props}
             />
           </View>
         </Animated.View>
@@ -221,7 +215,6 @@ const RNSingleSelect = (props: IProps) => {
               resizeMode="contain"
               source={imageSource}
               style={_imageStyle(imageHeight, imageWidth)}
-              {...props}
             />
           )}
           <TextComponent style={[_menuItemTextStyle(theme), menuItemTextStyle]}>
@@ -243,7 +236,7 @@ const RNSingleSelect = (props: IProps) => {
           _menuBarContainer(theme, props.menuBarContainerHeight || 150),
           {
             transform: [{ scaleY: rotate }],
-            display: menuToggled ? "flex" : "none",
+            display: disableAbsolute ? "flex" : menuToggled ? "flex" : "none",
           },
           props.menuBarContainerStyle,
         ]}

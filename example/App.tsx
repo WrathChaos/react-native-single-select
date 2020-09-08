@@ -1,34 +1,35 @@
 import React from "react";
-import { View, StatusBar, SafeAreaView } from "react-native";
+import { View, StatusBar, SafeAreaView, Dimensions } from "react-native";
 import RNSingleSelect, {
   ISingleSelectDataType,
 } from "@freakycoder/react-native-single-select";
+const { width: ScreenWidth } = Dimensions.get("window");
 
 const staticData: Array<ISingleSelectDataType> = [
   {
     id: 0,
     value: "Euismod Justo",
-    // imageSource: require("./assets/money.png"),
+    imageSource: require("./assets/money.png"),
   },
   {
     id: 1,
     value: "Risus Venenatis",
-    // imageSource: require("./assets/beer.png"),
+    imageSource: require("./assets/beer.png"),
   },
   {
     id: 2,
     value: "Vestibulum Ullamcorper",
-    // imageSource: require("./assets/party.png"),
+    imageSource: require("./assets/party.png"),
   },
   {
     id: 3,
     value: "Lorem Nibh",
-    // imageSource: require("./assets/food-and-restaurant.png"),
+    imageSource: require("./assets/food-and-restaurant.png"),
   },
   {
     id: 4,
     value: "Ligula Amet",
-    //  imageSource: require("./assets/guitar.png")
+    imageSource: require("./assets/guitar.png"),
   },
 ];
 
@@ -58,6 +59,7 @@ const App = () => {
         >
           <RNSingleSelect
             darkMode
+            width={ScreenWidth * 0.9}
             data={staticData}
             // menuBarContainerHeight={300}
             onSelect={(selectedItem: ISingleSelectDataType) =>
