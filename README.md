@@ -11,26 +11,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
 
-  <table>
-    <tr>
-      <td>
-        <b>Dark Theme</b>
-      </td>
-      <td>
-        <b>Light Theme</b>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <img alt="React Native Internet Connection Alert"
-          src="assets/Screenshots/React-Native-Single-Select-Dark-Theme.gif"  />
-      </td>
-      <td align="center">
+<table>
+  <tr>
+    <td>
+      <b>Dark Theme</b>
+    </td>
+    <td>
+      <b>Light Theme</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
       <img alt="React Native Internet Connection Alert"
-          src="assets/Screenshots/React-Native-Single-Select-Light-Theme.gif" />
-      </td>
-    </tr>
-  </table>
+        src="assets/Screenshots/React-Native-Single-Select-Dark-Theme.gif"  />
+    </td>
+    <td align="center">
+    <img alt="React Native Internet Connection Alert"
+        src="assets/Screenshots/React-Native-Single-Select-Light-Theme.gif" />
+    </td>
+  </tr>
+</table>
 
 # Installation
 
