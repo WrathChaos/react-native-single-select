@@ -32,10 +32,12 @@ export const _menuItemContainer = (
 export const _menuBarContainer = (
   theme: string,
   menuBarContainerHeight: number,
+  menuBarContainerWidth: number,
 ): ViewStyle => ({
   borderBottomEndRadius: 16,
   borderBottomStartRadius: 16,
   height: menuBarContainerHeight,
+  width: menuBarContainerWidth,
   backgroundColor: ThemeColors[theme].menuBarBackgroundColor,
 });
 

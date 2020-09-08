@@ -47,6 +47,7 @@ interface IProps {
   disableAbsolute?: boolean;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
+  menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
   buttonContainerStyle?: ViewStyle;
   menuBarContainerStyle?: ViewStyle;
@@ -78,6 +79,8 @@ const RNSingleSelect = (props: IProps) => {
   const [theme, setTheme] = React.useState(DARK);
 
   const {
+    menuBarContainerHeight = 150,
+    menuBarContainerWidth = 250,
     disableAbsolute = false,
     ImageComponent = Image,
     TextComponent = Text,
@@ -233,7 +236,11 @@ const RNSingleSelect = (props: IProps) => {
     return (
       <Animated.View
         style={[
-          _menuBarContainer(theme, props.menuBarContainerHeight || 150),
+          _menuBarContainer(
+            theme,
+            menuBarContainerHeight,
+            menuBarContainerWidth,
+          ),
           {
             transform: [{ scaleY: rotate }],
             display: disableAbsolute ? "flex" : menuToggled ? "flex" : "none",
