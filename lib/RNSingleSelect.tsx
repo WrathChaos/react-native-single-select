@@ -49,6 +49,7 @@ interface IProps {
   menuItemTextStyle?: TextStyle;
   menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
+  disableFilterAnimation: boolean;
   buttonContainerStyle?: ViewStyle;
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
@@ -84,6 +85,7 @@ const RNSingleSelect = (props: IProps) => {
     disableAbsolute = false,
     ImageComponent = Image,
     TextComponent = Text,
+    disableFilterAnimation = false,
   } = props;
 
   React.useEffect(() => {
@@ -146,7 +148,7 @@ const RNSingleSelect = (props: IProps) => {
       const textData = text.toLowerCase();
       return itemData.indexOf(textData) > -1;
     });
-    triggerFilterAnimation();
+    !disableFilterAnimation && triggerFilterAnimation();
     setQuery(text);
     setSelectedItem({ value: text });
     setDataSource(newData);

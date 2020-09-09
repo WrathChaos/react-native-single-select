@@ -118,6 +118,7 @@ export interface ISingleSelectDataType {
 | disableAbsolute        |           boolean            |   false   | if you do not want to use the library without absolute to fix bottom menubar's `overlaps` simply make it `true` |
 | menuBarContainerWidth  |            number            |    250    | change the bottom menu bar's width                                                                              |
 | menuBarContainerHeight |            number            |    150    | change the bottom menu bar's height                                                                             |
+| disableFilterAnimation |           boolean            |   false   | disable the filter animation for huge lists (especially on Android)                                             |
 
 ## Future Plans
 
