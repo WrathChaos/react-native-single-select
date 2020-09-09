@@ -40,6 +40,12 @@ Add the dependency:
 npm i @freakycoder/react-native-single-select
 ```
 
+## Dependency
+
+```json
+"fuse.js": ">= 6.4.1",
+```
+
 # Usage
 
 ## Import
