@@ -1,8 +1,6 @@
 import React from "react";
 import { View, StatusBar, SafeAreaView, Dimensions } from "react-native";
-import RNSingleSelect, {
-  ISingleSelectDataType,
-} from "@freakycoder/react-native-single-select";
+import RNSingleSelect, { ISingleSelectDataType } from "./lib/RNSingleSelect";
 const { width: ScreenWidth } = Dimensions.get("window");
 
 const staticData: Array<ISingleSelectDataType> = [
@@ -59,9 +57,9 @@ const App = () => {
         >
           <RNSingleSelect
             darkMode
-            width={ScreenWidth * 0.9}
             data={staticData}
-            // menuBarContainerHeight={300}
+            width={ScreenWidth * 0.9}
+            menuBarContainerWidth={ScreenWidth * 0.9}
             onSelect={(selectedItem: ISingleSelectDataType) =>
               console.log("SelectedItem: ", selectedItem)
             }
