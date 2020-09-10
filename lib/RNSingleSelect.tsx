@@ -4,6 +4,7 @@ import {
   View,
   Image,
   Easing,
+  FlatList,
   Animated,
   ViewStyle,
   TextStyle,
@@ -59,7 +60,6 @@ interface IProps {
 
 let iconRef: any = undefined;
 const RNSingleSelect = (props: IProps) => {
-  const [query, setQuery] = React.useState("");
   const [
     selectedItem,
     setSelectedItem,
@@ -146,7 +146,6 @@ const RNSingleSelect = (props: IProps) => {
     const newData = filterBySearch(text, props.data);
     console.log("newData: ", newData);
     !disableFilterAnimation && triggerFilterAnimation();
-    setQuery(text);
     setSelectedItem({ value: text });
     setDataSource(newData);
   };
@@ -200,8 +199,9 @@ const RNSingleSelect = (props: IProps) => {
     );
   };
 
-  const renderMenuItem = (item: ISingleSelectDataType, index: number) => {
-    const { id, value, imageSource } = item;
+  const renderMenuItem = (menuItem: any) => {
+    const { index } = menuItem;
+    const { id, value, imageSource } = menuItem.item;
     const { data, imageWidth, imageHeight, menuItemTextStyle } = props;
     return (
       <TouchableHighlight
@@ -247,13 +247,7 @@ const RNSingleSelect = (props: IProps) => {
           props.menuBarContainerStyle,
         ]}
       >
-        <ScrollView>
-          {dataSource &&
-            dataSource.length > 0 &&
-            dataSource.map((item: ISingleSelectDataType, index: number) =>
-              renderMenuItem(item, index),
-            )}
-        </ScrollView>
+        <FlatList data={dataSource} renderItem={renderMenuItem} />
       </Animated.View>
     );
   };
