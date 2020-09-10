@@ -10,7 +10,6 @@ import {
   TextStyle,
   TextInput,
   ImageStyle,
-  ScrollView,
   LayoutAnimation,
   TouchableOpacity,
   TouchableHighlight,
@@ -28,7 +27,6 @@ import styles, {
   _placeholderTextStyle,
 } from "./RNSingleSelect.style";
 import { ThemeColors, DARK, LIGHT } from "./theme";
-import { filterBySearch } from "./utils";
 
 export interface ISingleSelectDataType {
   id: number;
@@ -143,9 +141,14 @@ const RNSingleSelect = (props: IProps) => {
   };
 
   const handleOnFilter = (text: string) => {
-    const newData = filterBySearch(text, props.data);
-    console.log("newData: ", newData);
+    let newData = dataBackup;
+    newData = dataBackup?.filter((item) => {
+      const itemData = item.value.toLowerCase();
+      const textData = text.toLowerCase();
+      return itemData.indexOf(textData) > -1;
+    });
     !disableFilterAnimation && triggerFilterAnimation();
+    setDataSource(newData);
     setSelectedItem({ value: text });
     setDataSource(newData);
   };
@@ -208,7 +211,7 @@ const RNSingleSelect = (props: IProps) => {
         key={id}
         style={_menuItemContainer(index, data)}
         onPress={() => {
-          handleOnSelectItem(item);
+          handleOnSelectItem(menuItem.item);
         }}
       >
         <View style={styles.menuBarItemContainerGlue}>
