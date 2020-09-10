@@ -40,6 +40,14 @@ Add the dependency:
 npm i @freakycoder/react-native-single-select
 ```
 
+# Features
+
+* Built-in Search Filter 
+* Light Mode / Dark Mode
+* Fully animated functionality
+* Image List Item Support
+
+
 # Usage
 
 ## Import
