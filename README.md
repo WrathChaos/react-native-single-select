@@ -42,10 +42,15 @@ npm i @freakycoder/react-native-single-select
 
 # Features
 
-* Built-in Search Filter 
-* Light Mode / Dark Mode
-* Fully animated functionality
-* Image List Item Support
+* Light Mode ☀️
+* Dark Mode 🌙
+* TextInput 💬
+* Fully Animated Functionality 😍
+* Built-in Search Filter 🎊
+* Image Feature 💪
+* Custom Image Component Support 😋
+* Custom Text Component Support 😋
+* Many More...
 
 
 # Usage
