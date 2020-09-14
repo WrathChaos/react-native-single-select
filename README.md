@@ -132,6 +132,7 @@ export interface ISingleSelectDataType {
 | menuBarContainerWidth  |            number            |    250    | change the bottom menu bar's width                                                                              |
 | menuBarContainerHeight |            number            |    150    | change the bottom menu bar's height                                                                             |
 | disableFilterAnimation |           boolean            |   false   | disable the filter animation for huge lists (especially on Android)                                             |
+| onTextChange           |           function           | undefined | handle the onTextChange function                                                                                |
 
 ## Future Plans
 

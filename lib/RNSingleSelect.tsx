@@ -53,6 +53,7 @@ interface IProps {
   buttonContainerStyle?: ViewStyle;
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
+  onTextChange: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
 }
 
@@ -85,6 +86,7 @@ const RNSingleSelect = (props: IProps) => {
     ImageComponent = Image,
     TextComponent = Text,
     disableFilterAnimation = false,
+    onTextChange,
   } = props;
 
   React.useEffect(() => {
@@ -187,6 +189,7 @@ const RNSingleSelect = (props: IProps) => {
               onChangeText={(text: string) => {
                 if (text.length === 0) handleOnFilter("");
                 else handleOnFilter(text);
+                onTextChange && onTextChange(text);
               }}
             >
               <TextComponent>{selectedItem?.value}</TextComponent>
