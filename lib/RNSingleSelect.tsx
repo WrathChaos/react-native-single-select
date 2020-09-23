@@ -46,6 +46,7 @@ interface IProps {
   ImageComponent?: any;
   disableAbsolute?: boolean;
   placeholderTextStyle?: any;
+  placeholderTextColor?: string;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   menuBarContainerWidth?: number;
@@ -69,6 +70,7 @@ const RNSingleSelect = (props: IProps) => {
     placeholder,
     onTextChange,
     arrowImageStyle,
+    placeholderTextColor,
     buttonContainerStyle,
     placeholderTextStyle,
     menuBarContainerStyle,
@@ -190,7 +192,9 @@ const RNSingleSelect = (props: IProps) => {
           <View style={styles.buttonContainerGlue}>
             <TextInput
               placeholderTextColor={
-                selectedItem
+                placeholderTextColor
+                  ? placeholderTextColor
+                  : selectedItem
                   ? ThemeColors[theme].textColor
                   : ThemeColors[theme].placeholderColor
               }

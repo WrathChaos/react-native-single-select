@@ -133,6 +133,7 @@ export interface ISingleSelectDataType {
 | disableFilterAnimation |           boolean            |   false   | disable the filter animation for huge lists (especially on Android)                                             |
 | onTextChange           |           function           | undefined | handle the onTextChange function                                                                                |
 | placeholderTextStyle   |            style             |  default  | extends or override the default placeholder's text style                                                        |
+| placeholderTextColor   |            color             |  default  | change the placeholder's text color                                                                             |
 
 ## Future Plans
 
