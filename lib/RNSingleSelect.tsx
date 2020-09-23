@@ -216,6 +216,7 @@ const RNSingleSelect = (props: IProps) => {
               theme={theme}
               ref={(ref: Icon) => (iconRef = ref)}
               style={[styles.arrowImageStyle, arrowImageStyle]}
+              {...props}
             />
           </View>
         </Animated.View>
