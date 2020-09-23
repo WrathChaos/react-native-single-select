@@ -42,16 +42,15 @@ npm i @freakycoder/react-native-single-select
 
 # Features
 
-* Light Mode ☀️
-* Dark Mode 🌙
-* TextInput 💬
-* Fully Animated Functionality 😍
-* Built-in Search Filter 🎊
-* Image Feature 💪
-* Custom Image Component Support 😋
-* Custom Text Component Support 😋
-* Many More...
-
+- Light Mode ☀️
+- Dark Mode 🌙
+- TextInput 💬
+- Fully Animated Functionality 😍
+- Built-in Search Filter 🎊
+- Image Feature 💪
+- Custom Image Component Support 😋
+- Custom Text Component Support 😋
+- Many More...
 
 # Usage
 
@@ -133,6 +132,7 @@ export interface ISingleSelectDataType {
 | menuBarContainerHeight |            number            |    150    | change the bottom menu bar's height                                                                             |
 | disableFilterAnimation |           boolean            |   false   | disable the filter animation for huge lists (especially on Android)                                             |
 | onTextChange           |           function           | undefined | handle the onTextChange function                                                                                |
+| placeholderTextStyle   |            style             |  default  | extends or override the default placeholder's text style                                                        |
 
 ## Future Plans
 
@@ -142,6 +142,7 @@ export interface ISingleSelectDataType {
 - [x] ~~Customizable Image Component~~
 - [x] ~~Customizable Text Component~~
 - [x] ~~Dark Theme / Light Theme Options~~
+- [x] ~~More Customization for Colors~~
 - [ ] Customizable Animations
 - [ ] Write an article about the lib on Medium
 

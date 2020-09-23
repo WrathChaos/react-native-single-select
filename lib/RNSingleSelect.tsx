@@ -40,10 +40,11 @@ interface IProps {
   height?: number;
   darkMode?: boolean;
   imageWidth?: number;
+  TextComponent?: any;
   imageHeight?: number;
   placeholder?: string;
   ImageComponent?: any;
-  TextComponent?: any;
+  placeholderTextStyle: any;
   disableAbsolute?: boolean;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
@@ -59,6 +60,26 @@ interface IProps {
 
 let iconRef: any = undefined;
 const RNSingleSelect = (props: IProps) => {
+  const {
+    data,
+    width,
+    height,
+    darkMode,
+    onSelect,
+    placeholder,
+    onTextChange,
+    arrowImageStyle,
+    buttonContainerStyle,
+    placeholderTextStyle,
+    menuBarContainerStyle,
+    menuBarContainerHeight = 150,
+    menuBarContainerWidth = 250,
+    disableAbsolute = false,
+    ImageComponent = Image,
+    TextComponent = Text,
+    disableFilterAnimation = false,
+  } = props;
+
   const [
     selectedItem,
     setSelectedItem,
@@ -66,10 +87,10 @@ const RNSingleSelect = (props: IProps) => {
   const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
   const [dataBackup, setDataBackup] = React.useState<
     Array<ISingleSelectDataType> | undefined
-  >(props.data);
+  >(data);
   const [dataSource, setDataSource] = React.useState<
     Array<ISingleSelectDataType> | undefined
-  >(props.data);
+  >(data);
   const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
     Animated.Value
   >(new Animated.Value(16));
@@ -79,18 +100,8 @@ const RNSingleSelect = (props: IProps) => {
   ] = React.useState<Animated.Value>(new Animated.Value(0));
   const [theme, setTheme] = React.useState(DARK);
 
-  const {
-    menuBarContainerHeight = 150,
-    menuBarContainerWidth = 250,
-    disableAbsolute = false,
-    ImageComponent = Image,
-    TextComponent = Text,
-    disableFilterAnimation = false,
-    onTextChange,
-  } = props;
-
   React.useEffect(() => {
-    if (props.darkMode) setTheme(DARK);
+    if (darkMode) setTheme(DARK);
     else setTheme(LIGHT);
   }, []);
 
@@ -123,7 +134,7 @@ const RNSingleSelect = (props: IProps) => {
     handleOnFilter("");
     setSelectedItem(item);
     handleOnToggleMenuBar();
-    props.onSelect && props.onSelect(item);
+    onSelect && onSelect(item);
   };
 
   const triggerFilterAnimation = () => {
@@ -169,11 +180,11 @@ const RNSingleSelect = (props: IProps) => {
       >
         <Animated.View
           style={[
-            _menuButtonContainer(theme, props.height, props.width),
+            _menuButtonContainer(theme, height, width),
             {
               borderRadius: borderRadiusAnimation,
             },
-            props.buttonContainerStyle,
+            buttonContainerStyle,
           ]}
         >
           <View style={styles.buttonContainerGlue}>
@@ -183,8 +194,11 @@ const RNSingleSelect = (props: IProps) => {
                   ? ThemeColors[theme].textColor
                   : ThemeColors[theme].placeholderColor
               }
-              style={_placeholderTextStyle(theme, selectedItem)}
-              placeholder={props.placeholder || "Select"}
+              style={[
+                _placeholderTextStyle(theme, selectedItem),
+                placeholderTextStyle,
+              ]}
+              placeholder={placeholder || "Select"}
               onFocus={() => handleOnToggleMenuBar(false)}
               onChangeText={(text: string) => {
                 if (text.length === 0) handleOnFilter("");
@@ -197,7 +211,7 @@ const RNSingleSelect = (props: IProps) => {
             <Icon
               theme={theme}
               ref={(ref: Icon) => (iconRef = ref)}
-              style={[styles.arrowImageStyle, props.arrowImageStyle]}
+              style={[styles.arrowImageStyle, arrowImageStyle]}
             />
           </View>
         </Animated.View>
@@ -250,7 +264,7 @@ const RNSingleSelect = (props: IProps) => {
             transform: [{ scaleY: rotate }],
             display: disableAbsolute ? "flex" : menuToggled ? "flex" : "none",
           },
-          props.menuBarContainerStyle,
+          menuBarContainerStyle,
         ]}
       >
         <FlatList data={dataSource} renderItem={renderMenuItem} />
