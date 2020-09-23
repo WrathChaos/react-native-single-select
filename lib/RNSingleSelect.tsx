@@ -44,8 +44,8 @@ interface IProps {
   imageHeight?: number;
   placeholder?: string;
   ImageComponent?: any;
-  placeholderTextStyle: any;
   disableAbsolute?: boolean;
+  placeholderTextStyle?: any;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   menuBarContainerWidth?: number;
