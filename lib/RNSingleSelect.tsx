@@ -46,6 +46,7 @@ interface IProps {
   ImageComponent?: any;
   disableAbsolute?: boolean;
   placeholderTextStyle?: any;
+  animatedBorderRadius?: number;
   placeholderTextColor?: string;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
@@ -70,6 +71,7 @@ const RNSingleSelect = (props: IProps) => {
     placeholder,
     onTextChange,
     arrowImageStyle,
+    animatedBorderRadius,
     placeholderTextColor,
     buttonContainerStyle,
     placeholderTextStyle,
@@ -95,7 +97,7 @@ const RNSingleSelect = (props: IProps) => {
   >(data);
   const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
     Animated.Value
-  >(new Animated.Value(16));
+  >(new Animated.Value(animatedBorderRadius || 16));
   const [
     menuBarYTranslateAnimation,
     setMenuBarYTranslateAnimation,
@@ -109,7 +111,7 @@ const RNSingleSelect = (props: IProps) => {
 
   const animateBorderRadius = () => {
     Animated.timing(borderRadiusAnimation, {
-      toValue: menuToggled ? 16 : 0,
+      toValue: menuToggled ? animatedBorderRadius || 16 : 0,
       duration: 1250,
       easing: Easing.bounce,
       useNativeDriver: true,
