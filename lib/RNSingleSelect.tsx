@@ -88,7 +88,7 @@ const RNSingleSelect = (props: IProps) => {
     disableFilterAnimation = false,
     spinnerType = "ThreeBounce",
     spinnerSize = 30,
-    spinnerColor = "#fff",
+    spinnerColor,
   } = props;
 
   const [
