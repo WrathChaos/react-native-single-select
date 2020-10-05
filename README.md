@@ -37,6 +37,7 @@ Add the dependency:
 
 ```bash
 npm i @freakycoder/react-native-single-select
+npx pod-install // After Install the `react-native-spinkit`
 ```
 
 ## Peer Dependency
