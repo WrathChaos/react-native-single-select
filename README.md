@@ -145,6 +145,23 @@ export interface ISingleSelectDataType {
 | spinnerSize            |            number            |      30       | change the spinner size                                                                                         |
 | spinnerColor           |            color             |    default    | change the spinner color                                                                                        |
 
+## List of available types for Spinner
+
+- CircleFlip
+- Bounce
+- Wave
+- WanderingCubes
+- Pulse
+- ChasingDots
+- ThreeBounce
+- Circle
+- 9CubeGrid
+- WordPress (IOS only)
+- FadingCircle
+- FadingCircleAlt
+- Arc (IOS only)
+- ArcAlt (IOS only)
+
 ## Future Plans
 
 - [x] ~~LICENSE~~

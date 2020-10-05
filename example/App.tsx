@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StatusBar, SafeAreaView, Dimensions } from "react-native";
-import RNSingleSelect, { ISingleSelectDataType } from "./lib/RNSingleSelect";
+import RNSingleSelect, {
+  ISingleSelectDataType,
+} from "./build/dist/RNSingleSelect";
 const { width: ScreenWidth } = Dimensions.get("window");
 
 const staticData: Array<ISingleSelectDataType> = [
