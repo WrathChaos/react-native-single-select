@@ -2,7 +2,7 @@ import React from "react";
 import { View, StatusBar, SafeAreaView, Dimensions } from "react-native";
 import RNSingleSelect, {
   ISingleSelectDataType,
-} from "./build/dist/RNSingleSelect";
+} from "@freakycoder/react-native-single-select";
 const { width: ScreenWidth } = Dimensions.get("window");
 
 const staticData: Array<ISingleSelectDataType> = [
