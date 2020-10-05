@@ -13,7 +13,8 @@
     "@freakycoder/react-native-single-select": "^0.2.15",
     "fuse.js": "^6.4.1",
     "react": "16.13.1",
-    "react-native": "0.63.2"
+    "react-native": "0.63.2",
+    "react-native-spinkit": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

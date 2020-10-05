@@ -3,7 +3,9 @@ import { ISingleSelectDataType } from "./RNSingleSelect";
 import { ThemeColors } from "./theme";
 
 interface Style {
+  listStyle: ViewStyle;
   arrowImageStyle: ImageStyle;
+  spinnerContainer: ViewStyle;
   buttonContainerGlue: ViewStyle;
   menuBarItemContainerGlue: ViewStyle;
 }
@@ -83,5 +85,14 @@ export default StyleSheet.create<Style>({
   menuBarItemContainerGlue: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  listStyle: {
+    marginTop: 3,
+    marginBottom: 3,
+  },
+  spinnerContainer: {
+    marginTop: 32,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

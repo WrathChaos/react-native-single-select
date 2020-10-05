@@ -32,6 +32,16 @@ const staticData: Array<ISingleSelectDataType> = [
 ];
 
 const App = () => {
+  const [dynamicData, setDynamicData] = React.useState<
+    Array<ISingleSelectDataType>
+  >([]);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setDynamicData(staticData);
+    }, 2000);
+  });
+
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -57,7 +67,7 @@ const App = () => {
         >
           <RNSingleSelect
             darkMode
-            data={staticData}
+            data={dynamicData}
             width={ScreenWidth * 0.9}
             menuBarContainerWidth={ScreenWidth * 0.9}
             onSelect={(selectedItem: ISingleSelectDataType) =>

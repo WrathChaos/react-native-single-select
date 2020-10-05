@@ -50,6 +50,7 @@ class Icon extends React.Component<IProps, IState> {
     });
     return (
       <Animated.Image
+        {...other}
         source={
           iconImageSource ||
           (this.props.theme === DARK
@@ -57,7 +58,6 @@ class Icon extends React.Component<IProps, IState> {
             : defaultDarkIconImage)
         }
         style={[style, { transform: [{ rotate }] }]}
-        {...other}
       />
     );
   }

@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
+import Spinner from "react-native-spinkit";
 /**
  * ? Local Imports
  */
@@ -44,6 +45,9 @@ interface IProps {
   imageHeight?: number;
   placeholder?: string;
   ImageComponent?: any;
+  spinnerType?: string;
+  spinnerSize?: number;
+  spinnerColor?: string;
   disableAbsolute?: boolean;
   placeholderTextStyle?: any;
   animatedBorderRadius?: number;
@@ -52,11 +56,11 @@ interface IProps {
   menuItemTextStyle?: TextStyle;
   menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
-  disableFilterAnimation: boolean;
+  disableFilterAnimation?: boolean;
   buttonContainerStyle?: ViewStyle;
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
-  onTextChange: (text: string) => void;
+  onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
 }
 
@@ -82,6 +86,9 @@ const RNSingleSelect = (props: IProps) => {
     ImageComponent = Image,
     TextComponent = Text,
     disableFilterAnimation = false,
+    spinnerType = "ThreeBounce",
+    spinnerSize = 30,
+    spinnerColor = "#fff",
   } = props;
 
   const [
@@ -108,6 +115,11 @@ const RNSingleSelect = (props: IProps) => {
     if (darkMode) setTheme(DARK);
     else setTheme(LIGHT);
   }, []);
+
+  React.useEffect(() => {
+    setDataSource(data);
+    setDataBackup(data);
+  }, [data]);
 
   const animateBorderRadius = () => {
     Animated.timing(borderRadiusAnimation, {
@@ -177,10 +189,10 @@ const RNSingleSelect = (props: IProps) => {
   const renderSingleSelectButton = () => {
     return (
       <TouchableOpacity
+        {...props}
         onPress={() => {
           handleOnToggleMenuBar();
         }}
-        {...props}
       >
         <Animated.View
           style={[
@@ -254,6 +266,25 @@ const RNSingleSelect = (props: IProps) => {
     );
   };
 
+  const renderSpinner = () => (
+    <View style={styles.spinnerContainer}>
+      <Spinner
+        size={spinnerSize}
+        type={spinnerType}
+        color={spinnerColor || ThemeColors[theme].textColor}
+        isVisible={!(dataSource && dataSource.length > 0)}
+      />
+    </View>
+  );
+
+  const renderList = () => (
+    <FlatList
+      data={dataSource}
+      style={styles.listStyle}
+      renderItem={renderMenuItem}
+    />
+  );
+
   const renderMenuBar = () => {
     const rotate = menuBarYTranslateAnimation.interpolate({
       inputRange: [0, 25, 50, 75, 100],
@@ -274,7 +305,7 @@ const RNSingleSelect = (props: IProps) => {
           menuBarContainerStyle,
         ]}
       >
-        <FlatList data={dataSource} renderItem={renderMenuItem} />
+        {dataSource && dataSource.length > 0 ? renderList() : renderSpinner()}
       </Animated.View>
     );
   };
