@@ -14,7 +14,6 @@ import {
     TouchableOpacity,
     TouchableHighlight,
 } from "react-native";
-// @ts-ignore
 import Spinner from "react-native-spinkit";
 /**
  * ? Local Imports
@@ -175,7 +174,6 @@ const RNSingleSelect = (props: IProps) => {
         });
         !disableFilterAnimation && triggerFilterAnimation();
         setDataSource(newData);
-        // @ts-ignore
         setSelectedItem({ value: text });
         setDataSource(newData);
     };
@@ -185,8 +183,6 @@ const RNSingleSelect = (props: IProps) => {
     /* -------------------------------------------------------------------------- */
 
     const renderSingleSelectButton = () => {
-        // @ts-ignore
-        // @ts-ignore
         return (
             <TouchableOpacity
                 {...props}
@@ -230,7 +226,6 @@ const RNSingleSelect = (props: IProps) => {
                         <Icon
                             theme={theme}
                             ref={(ref: Icon) => (iconRef = ref)}
-                            //@ts-ignore
                             style={[styles.arrowImageStyle, arrowImageStyle]}
                             {...props}
                         />
