@@ -11,20 +11,20 @@ interface Style {
 }
 
 export const _placeholderTextStyle = (
-    theme: string,
-    selectedItem?: ISingleSelectDataType | null,
+  theme: string,
+  selectedItem?: ISingleSelectDataType | null,
 ): TextStyle => ({
   width: "90%",
   fontSize: 16,
   fontWeight: "bold",
   color: selectedItem
-      ? ThemeColors[theme].textColor
-      : ThemeColors[theme].placeholderColor,
+    ? ThemeColors[theme].textColor
+    : ThemeColors[theme].placeholderColor,
 });
 
 export const _menuItemContainer = (
-    index: number,
-    data?: Array<ISingleSelectDataType>,
+  index: number,
+  data?: Array<ISingleSelectDataType>,
 ): ViewStyle => ({
   padding: 16,
   borderBottomEndRadius: index === (data && data.length - 1) ? 16 : 0,
@@ -32,9 +32,9 @@ export const _menuItemContainer = (
 });
 
 export const _menuBarContainer = (
-    theme: string,
-    menuBarContainerHeight: number,
-    menuBarContainerWidth: number,
+  theme: string,
+  menuBarContainerHeight: number,
+  menuBarContainerWidth: number,
 ): ViewStyle => ({
   borderBottomEndRadius: 16,
   borderBottomStartRadius: 16,
@@ -44,9 +44,9 @@ export const _menuBarContainer = (
 });
 
 export const _menuButtonContainer = (
-    theme: string,
-    height: number = 50,
-    width: number = 250,
+  theme: string,
+  height: number = 50,
+  width: number = 250,
 ): ViewStyle => ({
   width,
   height,
@@ -57,8 +57,8 @@ export const _menuButtonContainer = (
 });
 
 export const _imageStyle = (
-    height: number = 25,
-    width: number = 25,
+  height: number = 25,
+  width: number = 25,
 ): ImageStyle => ({
   width,
   height,
