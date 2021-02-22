@@ -1,7 +1,3 @@
-Custom adaptions for react-native-single-select library
-
-Thanks to the author [WrathChaos](https://github.com/WrathChaos/react-native-single-select) and his contributors for the great work. Original license and links attached for more information.
-
 <img alt="React Native Single Select" src="assets/logo.png" width="1050"/>
 
 [![Battle Tested ✅](https://img.shields.io/badge/-Battle--Tested%20%E2%9C%85-03666e?style=for-the-badge)](https://github.com/WrathChaos/react-native-single-select)
