@@ -62,7 +62,7 @@ interface IProps {
   data?: Array<ISingleSelectDataType>;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-  editable?: boolean;
+  searchEnabled?: boolean;
 }
 
 let iconRef: any = undefined;
@@ -90,7 +90,7 @@ const RNSingleSelect = (props: IProps) => {
     spinnerType = "ThreeBounce",
     spinnerSize = 30,
     spinnerColor,
-    editable = true
+    searchEnabled = true
   } = props;
 
   const [
@@ -207,7 +207,7 @@ const RNSingleSelect = (props: IProps) => {
         >
           <View style={styles.buttonContainerGlue}>
             <TextInput
-              editable={editable}
+              editable={searchEnabled}
               placeholderTextColor={
                 placeholderTextColor
                   ? placeholderTextColor
