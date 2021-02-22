@@ -100,13 +100,13 @@ const RNSingleSelect = (props: IProps) => {
   const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
   const [dataBackup, setDataBackup] = React.useState<
     Array<ISingleSelectDataType> | undefined
-    >(data);
+  >(data);
   const [dataSource, setDataSource] = React.useState<
     Array<ISingleSelectDataType> | undefined
-    >(data);
+  >(data);
   const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
     Animated.Value
-    >(new Animated.Value(animatedBorderRadius || 16));
+  >(new Animated.Value(animatedBorderRadius || 16));
   const [
     menuBarYTranslateAnimation,
     setMenuBarYTranslateAnimation,
@@ -190,54 +190,54 @@ const RNSingleSelect = (props: IProps) => {
 
   const renderSingleSelectButton = () => {
     return (
-        <TouchableOpacity
-            {...props}
-            onPress={() => {
-                handleOnToggleMenuBar();
-            }}
+      <TouchableOpacity
+        {...props}
+        onPress={() => {
+          handleOnToggleMenuBar();
+        }}
+      >
+        <Animated.View
+          style={[
+            _menuButtonContainer(theme, height, width),
+            {
+              borderRadius: borderRadiusAnimation,
+            },
+            buttonContainerStyle,
+          ]}
         >
-            <Animated.View
-                style={[
-                    _menuButtonContainer(theme, height, width),
-                    {
-                        borderRadius: borderRadiusAnimation,
-                    },
-                    buttonContainerStyle,
-                ]}
+          <View style={styles.buttonContainerGlue}>
+            <TextInput
+              editable={editable}
+              placeholderTextColor={
+                placeholderTextColor
+                  ? placeholderTextColor
+                  : selectedItem
+                  ? ThemeColors[theme].textColor
+                  : ThemeColors[theme].placeholderColor
+              }
+              style={[
+                _placeholderTextStyle(theme, selectedItem),
+                placeholderTextStyle,
+              ]}
+              placeholder={placeholder || "Select"}
+              onFocus={() => handleOnToggleMenuBar(false)}
+              onChangeText={(text: string) => {
+                if (text.length === 0) handleOnFilter("");
+                else handleOnFilter(text);
+                onTextChange && onTextChange(text);
+              }}
             >
-                <View style={styles.buttonContainerGlue}>
-                    <TextInput
-                        editable={editable}
-                        placeholderTextColor={
-                            placeholderTextColor
-                                ? placeholderTextColor
-                                : selectedItem
-                                ? ThemeColors[theme].textColor
-                                : ThemeColors[theme].placeholderColor
-                        }
-                        style={[
-                            _placeholderTextStyle(theme, selectedItem),
-                            placeholderTextStyle,
-                        ]}
-                        placeholder={placeholder || "Select"}
-                        onFocus={() => handleOnToggleMenuBar(false)}
-                        onChangeText={(text: string) => {
-                            if (text.length === 0) handleOnFilter("");
-                            else handleOnFilter(text);
-                            onTextChange && onTextChange(text);
-                        }}
-                    >
-                        <TextComponent>{selectedItem?.value}</TextComponent>
-                    </TextInput>
-                    <Icon
-                        theme={theme}
-                        ref={(ref: Icon) => (iconRef = ref)}
-                        style={[styles.arrowImageStyle, arrowImageStyle]}
-                        {...props}
-                    />
-                </View>
-            </Animated.View>
-        </TouchableOpacity>
+              <TextComponent>{selectedItem?.value}</TextComponent>
+            </TextInput>
+            <Icon
+              theme={theme}
+              ref={(ref: Icon) => (iconRef = ref)}
+              style={[styles.arrowImageStyle, arrowImageStyle]}
+              {...props}
+            />
+          </View>
+        </Animated.View>
+      </TouchableOpacity>
     );
   };
 
@@ -246,26 +246,26 @@ const RNSingleSelect = (props: IProps) => {
     const { id, value, imageSource } = menuItem.item;
     const { data, imageWidth, imageHeight, menuItemTextStyle } = props;
     return (
-        <TouchableHighlight
-            key={id}
-            style={_menuItemContainer(index, data)}
-            onPress={() => {
-                handleOnSelectItem(menuItem.item);
-            }}
-        >
-            <View style={styles.menuBarItemContainerGlue}>
-                {imageSource && (
-                    <ImageComponent
-                        resizeMode="contain"
-                        source={imageSource}
-                        style={_imageStyle(imageHeight, imageWidth)}
-                    />
-                )}
-                <TextComponent style={[_menuItemTextStyle(theme), menuItemTextStyle]}>
-                    {value}
-                </TextComponent>
-            </View>
-        </TouchableHighlight>
+      <TouchableHighlight
+        key={id}
+        style={_menuItemContainer(index, data)}
+        onPress={() => {
+          handleOnSelectItem(menuItem.item);
+        }}
+      >
+        <View style={styles.menuBarItemContainerGlue}>
+          {imageSource && (
+            <ImageComponent
+              resizeMode="contain"
+              source={imageSource}
+              style={_imageStyle(imageHeight, imageWidth)}
+            />
+          )}
+          <TextComponent style={[_menuItemTextStyle(theme), menuItemTextStyle]}>
+            {value}
+          </TextComponent>
+        </View>
+      </TouchableHighlight>
     );
   };
 
@@ -314,10 +314,10 @@ const RNSingleSelect = (props: IProps) => {
   };
 
   return (
-      <View>
-          {renderSingleSelectButton()}
-          {renderMenuBar()}
-      </View>
+    <View>
+      {renderSingleSelectButton()}
+      {renderMenuBar()}
+    </View>
   );
 };
 
