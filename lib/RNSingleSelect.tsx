@@ -62,7 +62,7 @@ interface IProps {
     data?: Array<ISingleSelectDataType>;
     onTextChange?: (text: string) => void;
     onSelect: (selectedItem: ISingleSelectDataType) => void;
-    editable?: boolean
+    editable?: boolean;
 }
 
 let iconRef: any = undefined;
@@ -90,7 +90,7 @@ const RNSingleSelect = (props: IProps) => {
         spinnerType = "ThreeBounce",
         spinnerSize = 30,
         spinnerColor,
-        editable = false,
+        editable = true
     } = props;
 
     const [
@@ -98,9 +98,15 @@ const RNSingleSelect = (props: IProps) => {
         setSelectedItem,
     ] = React.useState<ISingleSelectDataType | null>(null);
     const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
-    const [dataBackup, setDataBackup] = React.useState<Array<ISingleSelectDataType> | undefined>(data);
-    const [dataSource, setDataSource] = React.useState<Array<ISingleSelectDataType> | undefined>(data);
-    const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<Animated.Value>(new Animated.Value(animatedBorderRadius || 16));
+    const [dataBackup, setDataBackup] = React.useState<
+        Array<ISingleSelectDataType> | undefined
+        >(data);
+    const [dataSource, setDataSource] = React.useState<
+        Array<ISingleSelectDataType> | undefined
+        >(data);
+    const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
+        Animated.Value
+        >(new Animated.Value(animatedBorderRadius || 16));
     const [
         menuBarYTranslateAnimation,
         setMenuBarYTranslateAnimation,
