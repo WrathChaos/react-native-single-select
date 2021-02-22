@@ -1,6 +1,6 @@
 {
   "name": "@meecode/react-native-single-select",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Customizable & Easy to Use Single Select Library for React Native",
   "main": "./build/dist/RNSingleSelect.js",
   "repository": "git@github.com:WrathChaos/react-native-single-select.git",
