@@ -1,5 +1,5 @@
 {
-  "name": "@freakycoder/react-native-single-select",
+  "name": "@meecode/react-native-single-select",
   "version": "0.3.1",
   "description": "Customizable & Easy to Use Single Select Library for React Native",
   "main": "./build/dist/RNSingleSelect.js",
