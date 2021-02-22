@@ -51,7 +51,6 @@ class Icon extends React.Component<IProps, IState> {
         return (
             <Animated.Image
                 {...other}
-                // @ts-ignore
                 source={
                     iconImageSource ||
                     (this.props.theme === DARK
