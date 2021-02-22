@@ -75,6 +75,7 @@ const RNSingleSelect = (props: IProps) => {
         darkMode,
         onSelect,
         placeholder,
+        onTextChange,
         arrowImageStyle,
         animatedBorderRadius,
         placeholderTextColor,
@@ -218,6 +219,11 @@ const RNSingleSelect = (props: IProps) => {
                             ]}
                             placeholder={placeholder || "Select"}
                             onFocus={() => handleOnToggleMenuBar(false)}
+                            onChangeText={(text: string) => {
+                                if (text.length === 0) handleOnFilter("");
+                                else handleOnFilter(text);
+                                onTextChange && onTextChange(text);
+                            }}
                         >
                             <TextComponent>{selectedItem?.value}</TextComponent>
                         </TextInput>
