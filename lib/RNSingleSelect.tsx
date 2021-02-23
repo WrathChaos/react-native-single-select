@@ -62,7 +62,7 @@ interface IProps {
   data?: Array<ISingleSelectDataType>;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-  value?: ISingleSelectDataType;
+  initialValue?: ISingleSelectDataType;
 }
 
 let iconRef: any = undefined;
@@ -90,17 +90,13 @@ const RNSingleSelect = (props: IProps) => {
     spinnerType = "ThreeBounce",
     spinnerSize = 30,
     spinnerColor,
-    value = null
+      initialValue = null
   } = props;
-
-  const getInitialSelectedItemValue = () => {
-    return value ? value : null;
-  };
 
   const [
     selectedItem,
     setSelectedItem,
-  ] = React.useState<ISingleSelectDataType | null>(getInitialSelectedItemValue());
+  ] = React.useState<ISingleSelectDataType | null>(initialValue);
   const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
   const [dataBackup, setDataBackup] = React.useState<
     Array<ISingleSelectDataType> | undefined
