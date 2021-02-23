@@ -733,10 +733,10 @@
     "exec-sh" "^0.3.2"
     "minimist" "^1.2.0"
 
-"@freakycoder/react-native-single-select@^0.3.2":
-  "integrity" "sha512-m6LePchu3wRmDWvd/zZZR+Af3I4jQnOzFw+6wU3H6AS8zNiI6bgxj+iuNKPCKVwjU/d4ovlZDjfyISDH5CNrRg=="
-  "resolved" "https://registry.npmjs.org/@freakycoder/react-native-single-select/-/react-native-single-select-0.3.2.tgz"
-  "version" "0.3.2"
+"@freakycoder/react-native-single-select@^0.3.3":
+  "integrity" "sha512-k8FD65C/K5NjA36ZwfXBkrUS0MieYNG2zOiwOt4l1u2jyyR1Z+pP6Jc95bL5cD0Lj5LUbA9kjU6mOw5yogW9uw=="
+  "resolved" "https://registry.npmjs.org/@freakycoder/react-native-single-select/-/react-native-single-select-0.3.3.tgz"
+  "version" "0.3.3"
 
 "@hapi/address@2.x.x":
   "integrity" "sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ=="
