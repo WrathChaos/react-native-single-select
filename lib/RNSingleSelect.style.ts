@@ -13,11 +13,14 @@ interface Style {
 export const _placeholderTextStyle = (
   theme: string,
   selectedItem?: ISingleSelectDataType | null,
+  placeholderTextColor?: string,
 ): TextStyle => ({
   width: "90%",
   fontSize: 16,
   fontWeight: "bold",
-  color: selectedItem
+  color: placeholderTextColor
+    ? placeholderTextColor
+    : selectedItem
     ? ThemeColors[theme].textColor
     : ThemeColors[theme].placeholderColor,
 });
