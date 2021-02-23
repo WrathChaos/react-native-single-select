@@ -145,6 +145,7 @@ export interface ISingleSelectDataType {
 | spinnerType            |            string            | "ThreeBounce" | change the spinner type                                                                                         |
 | spinnerSize            |            number            |      30       | change the spinner size                                                                                         |
 | spinnerColor           |            color             |    default    | change the spinner color                                                                                        |
+| searchEnabled           |            boolean             |    true    | change search inputs readonly state                                                                                        |
 
 ## List of available types for Spinner
 
