@@ -63,6 +63,7 @@ interface IProps {
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
   value?: ISingleSelectDataType;
+  searchEnabled?: boolean;
 }
 
 let iconRef: any = undefined;
@@ -91,6 +92,7 @@ const RNSingleSelect = (props: IProps) => {
     spinnerSize = 30,
     spinnerColor,
     value = null
+    searchEnabled = true
   } = props;
 
   const getInitialSelectedItemValue = () => {
@@ -211,6 +213,7 @@ const RNSingleSelect = (props: IProps) => {
         >
           <View style={styles.buttonContainerGlue}>
             <TextInput
+              editable={searchEnabled}
               placeholderTextColor={
                 placeholderTextColor
                   ? placeholderTextColor
