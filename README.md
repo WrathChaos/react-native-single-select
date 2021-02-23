@@ -146,6 +146,7 @@ export interface ISingleSelectDataType {
 | spinnerSize            |            number            |      30       | change the spinner size                                                                                         |
 | spinnerColor           |            color             |    default    | change the spinner color                                                                                        |
 | initialValue           |            ISingleSelectDataType             |    null    | change the initial selected item                                                                                        |
+| searchEnabled           |            boolean             |    true    | change search inputs readonly state                                                                                        |
 
 ## List of available types for Spinner
 
