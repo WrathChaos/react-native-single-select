@@ -71,6 +71,7 @@ const App = () => {
             darkMode
             data={dynamicData}
             width={ScreenWidth * 0.9}
+            searchEnabled={false}
             menuBarContainerWidth={ScreenWidth * 0.9}
             onSelect={(selectedItem: ISingleSelectDataType) =>
               console.log("SelectedItem: ", selectedItem)

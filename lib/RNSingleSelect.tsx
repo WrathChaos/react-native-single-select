@@ -13,6 +13,7 @@ import {
   LayoutAnimation,
   TouchableOpacity,
   TouchableHighlight,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Spinner from "react-native-spinkit";
 /**
@@ -48,22 +49,22 @@ interface IProps {
   spinnerType?: string;
   spinnerSize?: number;
   spinnerColor?: string;
+  searchEnabled?: boolean;
   disableAbsolute?: boolean;
   placeholderTextStyle?: any;
   animatedBorderRadius?: number;
   placeholderTextColor?: string;
-  arrowImageStyle?: ImageStyle;
-  menuItemTextStyle?: TextStyle;
   menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
   disableFilterAnimation?: boolean;
+  arrowImageStyle?: ImageStyle;
+  menuItemTextStyle?: TextStyle;
   buttonContainerStyle?: ViewStyle;
   menuBarContainerStyle?: ViewStyle;
   data?: Array<ISingleSelectDataType>;
+  initialValue?: ISingleSelectDataType;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-  initialValue?: ISingleSelectDataType;
-  searchEnabled?: boolean;
 }
 
 let iconRef: any = undefined;
@@ -91,8 +92,8 @@ const RNSingleSelect = (props: IProps) => {
     spinnerType = "ThreeBounce",
     spinnerSize = 30,
     spinnerColor,
-      initialValue = null
-    searchEnabled = true
+    initialValue = null,
+    searchEnabled = true,
   } = props;
 
   const [
@@ -190,6 +191,40 @@ const RNSingleSelect = (props: IProps) => {
   /*                               Render Methods                               */
   /* -------------------------------------------------------------------------- */
 
+  const renderTextInput = () => (
+    <TextInput
+      editable={searchEnabled}
+      placeholderTextColor={
+        placeholderTextColor
+          ? placeholderTextColor
+          : selectedItem
+          ? ThemeColors[theme].textColor
+          : ThemeColors[theme].placeholderColor
+      }
+      style={[_placeholderTextStyle(theme, selectedItem), placeholderTextStyle]}
+      placeholder={placeholder || "Select"}
+      onFocus={() => handleOnToggleMenuBar(false)}
+      onChangeText={(text: string) => {
+        if (text.length === 0) handleOnFilter("");
+        else handleOnFilter(text);
+        onTextChange && onTextChange(text);
+      }}
+    >
+      <TextComponent>{selectedItem?.value}</TextComponent>
+    </TextInput>
+  );
+
+  const renderReadOnlyMode = () => (
+    <Text
+      style={[
+        _placeholderTextStyle(theme, selectedItem, placeholderTextColor),
+        placeholderTextStyle,
+      ]}
+    >
+      {selectedItem ? selectedItem?.value : placeholder || "Select"}
+    </Text>
+  );
+
   const renderSingleSelectButton = () => {
     return (
       <TouchableOpacity
@@ -208,29 +243,7 @@ const RNSingleSelect = (props: IProps) => {
           ]}
         >
           <View style={styles.buttonContainerGlue}>
-            <TextInput
-              editable={searchEnabled}
-              placeholderTextColor={
-                placeholderTextColor
-                  ? placeholderTextColor
-                  : selectedItem
-                  ? ThemeColors[theme].textColor
-                  : ThemeColors[theme].placeholderColor
-              }
-              style={[
-                _placeholderTextStyle(theme, selectedItem),
-                placeholderTextStyle,
-              ]}
-              placeholder={placeholder || "Select"}
-              onFocus={() => handleOnToggleMenuBar(false)}
-              onChangeText={(text: string) => {
-                if (text.length === 0) handleOnFilter("");
-                else handleOnFilter(text);
-                onTextChange && onTextChange(text);
-              }}
-            >
-              <TextComponent>{selectedItem?.value}</TextComponent>
-            </TextInput>
+            {searchEnabled ? renderTextInput() : renderReadOnlyMode()}
             <Icon
               theme={theme}
               ref={(ref: Icon) => (iconRef = ref)}
