@@ -126,6 +126,10 @@ const RNSingleSelect = (props: IProps) => {
     setDataBackup(data);
   }, [data]);
 
+  React.useEffect(() => {
+    setSelectedItem(initialValue);
+  }, []);
+
   const animateBorderRadius = () => {
     Animated.timing(borderRadiusAnimation, {
       toValue: menuToggled ? animatedBorderRadius || 16 : 0,
