@@ -100,6 +100,10 @@ const RNSingleSelect = (props: IProps) => {
     selectedItem,
     setSelectedItem,
   ] = React.useState<ISingleSelectDataType | null>(initialValue);
+  const [
+    placeholderText,
+    setPlaceholderText,
+  ] = React.useState<string | undefined>(placeholder);
   const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
   const [dataBackup, setDataBackup] = React.useState<
     Array<ISingleSelectDataType> | undefined
@@ -119,6 +123,9 @@ const RNSingleSelect = (props: IProps) => {
   React.useEffect(() => {
     if (darkMode) setTheme(DARK);
     else setTheme(LIGHT);
+
+    setSelectedItem(initialValue);
+    setPlaceholderText(placeholder)
   }, []);
 
   React.useEffect(() => {
@@ -202,7 +209,7 @@ const RNSingleSelect = (props: IProps) => {
           : ThemeColors[theme].placeholderColor
       }
       style={[_placeholderTextStyle(theme, selectedItem), placeholderTextStyle]}
-      placeholder={placeholder || "Select"}
+      placeholder={placeholderText || "Select"}
       onFocus={() => handleOnToggleMenuBar(false)}
       onChangeText={(text: string) => {
         if (text.length === 0) handleOnFilter("");
@@ -221,7 +228,7 @@ const RNSingleSelect = (props: IProps) => {
         placeholderTextStyle,
       ]}
     >
-      {selectedItem ? selectedItem?.value : placeholder || "Select"}
+      {selectedItem ? selectedItem?.value : placeholderText || "Select"}
     </Text>
   );
 
