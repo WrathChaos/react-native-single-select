@@ -100,10 +100,9 @@ const RNSingleSelect = (props: IProps) => {
     selectedItem,
     setSelectedItem,
   ] = React.useState<ISingleSelectDataType | null>(initialValue);
-  const [
-    placeholderText,
-    setPlaceholderText,
-  ] = React.useState<string | undefined>(placeholder);
+  const [placeholderText, setPlaceholderText] = React.useState<
+    string | undefined
+  >(placeholder);
   const [menuToggled, setMenuToggled] = React.useState<boolean | null>(false);
   const [dataBackup, setDataBackup] = React.useState<
     Array<ISingleSelectDataType> | undefined
@@ -123,7 +122,6 @@ const RNSingleSelect = (props: IProps) => {
   React.useEffect(() => {
     if (darkMode) setTheme(DARK);
     else setTheme(LIGHT);
-
   }, []);
 
   React.useEffect(() => {
