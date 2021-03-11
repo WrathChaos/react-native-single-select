@@ -122,14 +122,13 @@ const RNSingleSelect = (props: IProps) => {
   React.useEffect(() => {
     if (darkMode) setTheme(DARK);
     else setTheme(LIGHT);
-
-    setSelectedItem(initialValue);
-    setPlaceholderText(placeholder);
   }, []);
 
   React.useEffect(() => {
     setDataSource(data);
     setDataBackup(data);
+    setSelectedItem(initialValue);
+    setPlaceholderText(placeholder);
   }, [data]);
 
   const animateBorderRadius = () => {
