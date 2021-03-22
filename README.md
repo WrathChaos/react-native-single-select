@@ -175,6 +175,7 @@ export interface ISingleSelectDataType {
 - [x] ~~Dark Theme / Light Theme Options~~
 - [x] ~~More Customization for Colors~~
 - [x] ~~Built-in Spinner~~
+- [ ] Remove the `react-native-spinkit` and use `react-native-animated-spinkit` instead
 - [ ] Customizable Animations
 - [ ] Write an article about the lib on Medium
 
