@@ -57,6 +57,7 @@ interface IProps {
   menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
   disableFilterAnimation?: boolean;
+  value?: string;
   arrowImageStyle?: ImageStyle;
   menuItemTextStyle?: TextStyle;
   buttonContainerStyle?: ViewStyle;
@@ -73,6 +74,7 @@ const RNSingleSelect = (props: IProps) => {
     data,
     width,
     height,
+    value,
     darkMode,
     onSelect,
     placeholder,
@@ -198,6 +200,7 @@ const RNSingleSelect = (props: IProps) => {
 
   const renderTextInput = () => (
     <TextInput
+      value={value}
       editable={searchEnabled}
       placeholderTextColor={
         placeholderTextColor
