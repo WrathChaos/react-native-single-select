@@ -200,6 +200,7 @@ const RNSingleSelect = (props: IProps) => {
 
   const renderTextInput = () => (
     <TextInput
+      {...props}
       value={value}
       editable={searchEnabled}
       placeholderTextColor={
