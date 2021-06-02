@@ -1,7 +1,3 @@
-Custom adaptions for react-native-single-select library
-
-Thanks to the author [WrathChaos](https://github.com/WrathChaos/react-native-single-select) and his contributors for the great work. Original license and links attached for more information.
-
 <img alt="React Native Single Select" src="assets/logo.png" width="1050"/>
 
 [![Battle Tested ✅](https://img.shields.io/badge/-Battle--Tested%20%E2%9C%85-03666e?style=for-the-badge)](https://github.com/WrathChaos/react-native-single-select)
@@ -149,8 +145,9 @@ export interface ISingleSelectDataType {
 | spinnerType            |            string            | "ThreeBounce" | change the spinner type                                                                                         |
 | spinnerSize            |            number            |      30       | change the spinner size                                                                                         |
 | spinnerColor           |            color             |    default    | change the spinner color                                                                                        |
-| searchEnabled           |            boolean             |    true    | change search inputs readonly state                                                                                        |
-| value           |            ISingleSelectDataType             |    null    | change the initial selected item                                                                                        |
+| initialValue           |    ISingleSelectDataType     |     null      | change the initial selected item                                                                                |
+| searchEnabled          |           boolean            |     true      | change search inputs readonly state                                                                             |
+| value                  |            string            |   undefined   | set the text input value                                                                                        |
 
 ## List of available types for Spinner
 
@@ -179,6 +176,7 @@ export interface ISingleSelectDataType {
 - [x] ~~Dark Theme / Light Theme Options~~
 - [x] ~~More Customization for Colors~~
 - [x] ~~Built-in Spinner~~
+- [ ] Remove the `react-native-spinkit` and use `react-native-animated-spinkit` instead
 - [ ] Customizable Animations
 - [ ] Write an article about the lib on Medium
 
