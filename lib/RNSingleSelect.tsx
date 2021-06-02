@@ -67,8 +67,8 @@ interface IProps {
     value?: ISingleSelectDataType;
 }
 
-let iconRef: any = undefined;
 const RNSingleSelect = (props: IProps) => {
+    let iconRef: any = undefined;
     const {
         data,
         width,
