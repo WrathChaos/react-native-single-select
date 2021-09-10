@@ -4,11 +4,11 @@ import {
   View,
   Image,
   Easing,
-  FlatList,
   Animated,
   ViewStyle,
   TextStyle,
   TextInput,
+  ScrollView,
   ImageStyle,
   LayoutAnimation,
   TouchableOpacity,
@@ -261,16 +261,15 @@ const RNSingleSelect = (props: IProps) => {
     );
   };
 
-  const renderMenuItem = (menuItem: any) => {
-    const { index } = menuItem;
-    const { id, value, imageSource } = menuItem.item;
+  const renderMenuItem = (index: number, menuItem: any) => {
+    const { id, value, imageSource } = menuItem;
     const { data, imageWidth, imageHeight, menuItemTextStyle } = props;
     return (
       <TouchableHighlight
         key={id}
         style={_menuItemContainer(index, data)}
         onPress={() => {
-          handleOnSelectItem(menuItem.item);
+          handleOnSelectItem(menuItem);
         }}
       >
         <View style={styles.menuBarItemContainerGlue}>
@@ -301,12 +300,12 @@ const RNSingleSelect = (props: IProps) => {
   );
 
   const renderList = () => (
-    <FlatList
-      style={styles.listStyle}
-      {...props}
-      data={dataSource}
-      renderItem={renderMenuItem}
-    />
+    <ScrollView style={styles.listStyle}>
+      {dataSource &&
+        dataSource.map((item: any, index: number) => {
+          return renderMenuItem(index, item);
+        })}
+    </ScrollView>
   );
 
   const renderMenuBar = () => {
