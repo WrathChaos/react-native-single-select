@@ -34,12 +34,13 @@ class Icon extends React.Component<IProps, IState> {
 
   onPressAnimation = () => {
     const { rotation, toggled } = this.state;
+    this.setState({ toggled: !this.state.toggled })
     Animated.timing(rotation, {
       toValue: toggled ? 0 : 1,
       duration: 850,
       easing: Easing.bounce,
       useNativeDriver: true,
-    }).start(() => this.setState({ toggled: !this.state.toggled }));
+    }).start();
   };
 
   render() {
