@@ -4,16 +4,15 @@ import {
   View,
   Image,
   Easing,
-  FlatList,
   Animated,
   ViewStyle,
   TextStyle,
   TextInput,
+  ScrollView,
   ImageStyle,
   LayoutAnimation,
   TouchableOpacity,
   TouchableHighlight,
-  TouchableWithoutFeedback,
 } from "react-native";
 import Spinner from "react-native-spinkit";
 /**
@@ -98,10 +97,8 @@ const RNSingleSelect = (props: IProps) => {
     searchEnabled = true,
   } = props;
 
-  const [
-    selectedItem,
-    setSelectedItem,
-  ] = React.useState<ISingleSelectDataType | null>(initialValue);
+  const [selectedItem, setSelectedItem] =
+    React.useState<ISingleSelectDataType | null>(initialValue);
   const [placeholderText, setPlaceholderText] = React.useState<
     string | undefined
   >(placeholder);
@@ -112,13 +109,12 @@ const RNSingleSelect = (props: IProps) => {
   const [dataSource, setDataSource] = React.useState<
     Array<ISingleSelectDataType> | undefined
   >(data);
-  const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
-    Animated.Value
-  >(new Animated.Value(animatedBorderRadius || 16));
-  const [
-    menuBarYTranslateAnimation,
-    setMenuBarYTranslateAnimation,
-  ] = React.useState<Animated.Value>(new Animated.Value(0));
+  const [borderRadiusAnimation, setBorderRadiusAnimation] =
+    React.useState<Animated.Value>(
+      new Animated.Value(animatedBorderRadius || 16),
+    );
+  const [menuBarYTranslateAnimation, setMenuBarYTranslateAnimation] =
+    React.useState<Animated.Value>(new Animated.Value(0));
   const [theme, setTheme] = React.useState(DARK);
 
   React.useEffect(() => {
@@ -265,16 +261,15 @@ const RNSingleSelect = (props: IProps) => {
     );
   };
 
-  const renderMenuItem = (menuItem: any) => {
-    const { index } = menuItem;
-    const { id, value, imageSource } = menuItem.item;
+  const renderMenuItem = (index: number, menuItem: any) => {
+    const { id, value, imageSource } = menuItem;
     const { data, imageWidth, imageHeight, menuItemTextStyle } = props;
     return (
       <TouchableHighlight
         key={id}
         style={_menuItemContainer(index, data)}
         onPress={() => {
-          handleOnSelectItem(menuItem.item);
+          handleOnSelectItem(menuItem);
         }}
       >
         <View style={styles.menuBarItemContainerGlue}>
@@ -305,11 +300,12 @@ const RNSingleSelect = (props: IProps) => {
   );
 
   const renderList = () => (
-    <FlatList
-      data={dataSource}
-      style={styles.listStyle}
-      renderItem={renderMenuItem}
-    />
+    <ScrollView style={styles.listStyle}>
+      {dataSource &&
+        dataSource.map((item: any, index: number) => {
+          return renderMenuItem(index, item);
+        })}
+    </ScrollView>
   );
 
   const renderMenuBar = () => {
