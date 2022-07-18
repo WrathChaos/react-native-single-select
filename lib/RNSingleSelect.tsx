@@ -12,7 +12,7 @@ import {
   ImageStyle,
   LayoutAnimation,
   TouchableOpacity,
-  TouchableHighlight,
+  TouchableHighlight, ColorValue,
 } from "react-native";
 import Spinner from "react-native-spinkit";
 /**
@@ -65,6 +65,7 @@ interface IProps {
   initialValue?: ISingleSelectDataType;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
+  underlayColor?: string|ColorValue;
 }
 
 const RNSingleSelect = (props: IProps) => {
@@ -263,10 +264,11 @@ const RNSingleSelect = (props: IProps) => {
 
   const renderMenuItem = (index: number, menuItem: any) => {
     const { id, value, imageSource } = menuItem;
-    const { data, imageWidth, imageHeight, menuItemTextStyle } = props;
+    const { data, imageWidth, imageHeight, menuItemTextStyle, underlayColor } = props;
     return (
       <TouchableHighlight
         key={id}
+        underlayColor={underlayColor}
         style={_menuItemContainer(index, data)}
         onPress={() => {
           handleOnSelectItem(menuItem);
