@@ -787,10 +787,10 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
-"@freakycoder/react-native-single-select@^0.4.0":
-  "integrity" "sha512-3QX24aRKALs6XT0kZKieFQGfehOJpUFu3GHvxVRimMbKGodpdtwCRcb6KzUpZZYA06muA2KJDV2L8xayNvL4Hw=="
-  "resolved" "https://registry.npmjs.org/@freakycoder/react-native-single-select/-/react-native-single-select-0.4.0.tgz"
-  "version" "0.4.0"
+"@freakycoder/react-native-single-select@^0.4.1":
+  "integrity" "sha512-w9OVoSlhHRjoD3UItwDcVo2oK1XJBXPzQiZPCDVptYIUqfXYqiZqzW2fUlmmkmSvUGMMCtA9dVW3AZOOhRIW5g=="
+  "resolved" "https://registry.npmjs.org/@freakycoder/react-native-single-select/-/react-native-single-select-0.4.1.tgz"
+  "version" "0.4.1"
 
 "@hapi/hoek@^9.0.0":
   "integrity" "sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ=="

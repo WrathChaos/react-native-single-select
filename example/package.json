@@ -10,10 +10,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@freakycoder/react-native-single-select": "^0.4.1",
+    "fuse.js": "^6.4.1",
     "react": "18.0.0",
     "react-native": "0.69.3",
-    "@freakycoder/react-native-single-select": "^0.4.0",
-    "fuse.js": "^6.4.1",
     "react-native-spinkit": "^1.5.1"
   },
   "devDependencies": {
