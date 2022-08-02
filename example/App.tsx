@@ -1,35 +1,35 @@
-import React from "react";
-import { View, StatusBar, SafeAreaView, Dimensions } from "react-native";
+import React from 'react';
+import {View, StatusBar, SafeAreaView, Dimensions} from 'react-native';
 import RNSingleSelect, {
   ISingleSelectDataType,
-} from "@freakycoder/react-native-single-select";
-const { width: ScreenWidth } = Dimensions.get("window");
+} from '@freakycoder/react-native-single-select';
+const {width: ScreenWidth} = Dimensions.get('window');
 
 const staticData: Array<ISingleSelectDataType> = [
   {
     id: 0,
-    value: "Euismod Justo",
-    imageSource: require("./assets/money.png"),
+    value: 'Euismod Justo',
+    imageSource: require('./assets/money.png'),
   },
   {
     id: 1,
-    value: "Risus Venenatis",
-    imageSource: require("./assets/beer.png"),
+    value: 'Risus Venenatis',
+    imageSource: require('./assets/beer.png'),
   },
   {
     id: 2,
-    value: "Vestibulum Ullamcorper",
-    imageSource: require("./assets/party.png"),
+    value: 'Vestibulum Ullamcorper',
+    imageSource: require('./assets/party.png'),
   },
   {
     id: 3,
-    value: "Lorem Nibh",
-    imageSource: require("./assets/food-and-restaurant.png"),
+    value: 'Lorem Nibh',
+    imageSource: require('./assets/food-and-restaurant.png'),
   },
   {
     id: 4,
-    value: "Ligula Amet",
-    imageSource: require("./assets/guitar.png"),
+    value: 'Ligula Amet',
+    imageSource: require('./assets/guitar.png'),
   },
 ];
 
@@ -50,17 +50,17 @@ const App = () => {
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: "#454851",
+          backgroundColor: '#454851',
           // backgroundColor: "#eceef3",
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <View
           style={{
             shadowRadius: 12,
             shadowOpacity: 0.1,
-            shadowColor: "#757575",
+            shadowColor: '#757575',
             shadowOffset: {
               width: 0,
               height: 3,
@@ -74,7 +74,7 @@ const App = () => {
             searchEnabled={false}
             menuBarContainerWidth={ScreenWidth * 0.9}
             onSelect={(selectedItem: ISingleSelectDataType) =>
-              console.log("SelectedItem: ", selectedItem)
+              console.log('SelectedItem: ', selectedItem)
             }
           />
         </View>
