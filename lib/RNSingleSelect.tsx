@@ -12,7 +12,8 @@ import {
   ImageStyle,
   LayoutAnimation,
   TouchableOpacity,
-  TouchableHighlight, ColorValue,
+  TouchableHighlight,
+  ColorValue,
 } from "react-native";
 import Spinner from "react-native-spinkit";
 /**
@@ -65,7 +66,7 @@ interface IProps {
   initialValue?: ISingleSelectDataType;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-  underlayColor?: string|ColorValue;
+  underlayColor?: string | ColorValue;
 }
 
 const RNSingleSelect = (props: IProps) => {
@@ -98,8 +99,10 @@ const RNSingleSelect = (props: IProps) => {
     searchEnabled = true,
   } = props;
 
-  const [selectedItem, setSelectedItem] =
-    React.useState<ISingleSelectDataType | null>(initialValue);
+  const [
+    selectedItem,
+    setSelectedItem,
+  ] = React.useState<ISingleSelectDataType | null>(initialValue);
   const [placeholderText, setPlaceholderText] = React.useState<
     string | undefined
   >(placeholder);
@@ -110,12 +113,13 @@ const RNSingleSelect = (props: IProps) => {
   const [dataSource, setDataSource] = React.useState<
     Array<ISingleSelectDataType> | undefined
   >(data);
-  const [borderRadiusAnimation, setBorderRadiusAnimation] =
-    React.useState<Animated.Value>(
-      new Animated.Value(animatedBorderRadius || 16),
-    );
-  const [menuBarYTranslateAnimation, setMenuBarYTranslateAnimation] =
-    React.useState<Animated.Value>(new Animated.Value(0));
+  const [borderRadiusAnimation, setBorderRadiusAnimation] = React.useState<
+    Animated.Value
+  >(new Animated.Value(animatedBorderRadius || 16));
+  const [
+    menuBarYTranslateAnimation,
+    setMenuBarYTranslateAnimation,
+  ] = React.useState<Animated.Value>(new Animated.Value(0));
   const [theme, setTheme] = React.useState(DARK);
 
   React.useEffect(() => {
@@ -264,7 +268,13 @@ const RNSingleSelect = (props: IProps) => {
 
   const renderMenuItem = (index: number, menuItem: any) => {
     const { id, value, imageSource } = menuItem;
-    const { data, imageWidth, imageHeight, menuItemTextStyle, underlayColor } = props;
+    const {
+      data,
+      imageWidth,
+      imageHeight,
+      menuItemTextStyle,
+      underlayColor,
+    } = props;
     return (
       <TouchableHighlight
         key={id}
