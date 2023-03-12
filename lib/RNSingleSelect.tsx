@@ -67,6 +67,7 @@ interface IProps {
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
   underlayColor?: string | ColorValue;
+  nestedScrollEnabled?: boolean;
 }
 
 const RNSingleSelect = (props: IProps) => {
@@ -97,6 +98,7 @@ const RNSingleSelect = (props: IProps) => {
     spinnerColor,
     initialValue = null,
     searchEnabled = true,
+    nestedScrollEnabled = false
   } = props;
 
   const [
@@ -312,7 +314,7 @@ const RNSingleSelect = (props: IProps) => {
   );
 
   const renderList = () => (
-    <ScrollView style={styles.listStyle}>
+    <ScrollView style={styles.listStyle} nestedScrollEnabled={nestedScrollEnabled}>
       {dataSource &&
         dataSource.map((item: any, index: number) => {
           return renderMenuItem(index, item);
