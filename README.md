@@ -148,6 +148,7 @@ export interface ISingleSelectDataType {
 | initialValue           |    ISingleSelectDataType     |     null      | change the initial selected item                                                                                |
 | searchEnabled          |           boolean            |     true      | change search inputs readonly state                                                                             |
 | value                  |            string            |   undefined   | set the text input value                                                                                        |
+| nestedScrollEnabled | boolean | false | enable/disable nested scrolling for the items
 
 ## List of available types for Spinner
 
