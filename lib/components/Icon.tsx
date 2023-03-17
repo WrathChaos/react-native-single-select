@@ -1,21 +1,18 @@
 import * as React from "react";
-import { Animated, Easing, ImageStyle } from "react-native";
+import { Animated, Easing, ImageSourcePropType, ImageStyle, StyleProp } from "react-native";
 /**
  * ? Local Imports
  */
-import { DARK, LIGHT } from "../theme";
+import { DARK } from "../theme";
 // ? Assets
 import defaultLightIconImage from "./down-arrow-light.png";
 import defaultDarkIconImage from "./down-arrow-dark.png";
 
-export type Source = {
-  uri?: string;
-};
 
 interface IProps {
   theme: string;
-  style?: ImageStyle | ImageStyle[];
-  iconImageSource?: Source | number;
+  style?: StyleProp<ImageStyle>;
+  iconImageSource?: any;
 }
 
 interface IState {

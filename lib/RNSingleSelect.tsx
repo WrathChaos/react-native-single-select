@@ -14,8 +14,9 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   ColorValue,
+  StyleProp,
 } from "react-native";
-import Spinner from "react-native-spinkit";
+import Spinner, { SpinnerType } from "react-native-spinkit";
 /**
  * ? Local Imports
  */
@@ -29,6 +30,7 @@ import styles, {
   _placeholderTextStyle,
 } from "./RNSingleSelect.style";
 import { ThemeColors, DARK, LIGHT } from "./theme";
+
 
 export interface ISingleSelectDataType {
   id: number;
@@ -46,7 +48,7 @@ interface IProps {
   imageHeight?: number;
   placeholder?: string;
   ImageComponent?: any;
-  spinnerType?: string;
+  value?: string;
   spinnerSize?: number;
   spinnerColor?: string;
   searchEnabled?: boolean;
@@ -54,20 +56,20 @@ interface IProps {
   placeholderTextStyle?: any;
   animatedBorderRadius?: number;
   placeholderTextColor?: string;
+  nestedScrollEnabled?: boolean;
   menuBarContainerWidth?: number;
   menuBarContainerHeight?: number;
   disableFilterAnimation?: boolean;
-  value?: string;
-  arrowImageStyle?: ImageStyle;
-  menuItemTextStyle?: TextStyle;
-  buttonContainerStyle?: ViewStyle;
-  menuBarContainerStyle?: ViewStyle;
+  underlayColor?: string | ColorValue;
+  arrowImageStyle?: StyleProp<ImageStyle>;
+  menuItemTextStyle?: StyleProp<TextStyle>;
+  buttonContainerStyle?: StyleProp<ViewStyle>;
+  menuBarContainerStyle?: StyleProp<ViewStyle>;
   data?: Array<ISingleSelectDataType>;
   initialValue?: ISingleSelectDataType;
+  spinnerType?: SpinnerType;
   onTextChange?: (text: string) => void;
   onSelect: (selectedItem: ISingleSelectDataType) => void;
-  underlayColor?: string | ColorValue;
-  nestedScrollEnabled?: boolean;
 }
 
 const RNSingleSelect = (props: IProps) => {
@@ -191,9 +193,10 @@ const RNSingleSelect = (props: IProps) => {
       const textData = text.toLowerCase();
       return itemData.indexOf(textData) > -1;
     });
+    const id = newData?.find((item) => item.value === text)?.id || dataBackup![0].id
     !disableFilterAnimation && triggerFilterAnimation();
     setDataSource(newData);
-    setSelectedItem({ value: text });
+    setSelectedItem({ id, value: text });
     setDataSource(newData);
   };
 

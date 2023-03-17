@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StatusBar, SafeAreaView, Dimensions} from 'react-native';
 import RNSingleSelect, {
   ISingleSelectDataType,
-} from '@freakycoder/react-native-single-select';
+} from './build/dist/RNSingleSelect';
 const {width: ScreenWidth} = Dimensions.get('window');
 
 const staticData: Array<ISingleSelectDataType> = [
@@ -54,8 +54,7 @@ const App = () => {
           // backgroundColor: "#eceef3",
           alignItems: 'center',
           justifyContent: 'center',
-        }}
-      >
+        }}>
         <View
           style={{
             shadowRadius: 12,
@@ -65,8 +64,7 @@ const App = () => {
               width: 0,
               height: 3,
             },
-          }}
-        >
+          }}>
           <RNSingleSelect
             darkMode
             data={dynamicData}
